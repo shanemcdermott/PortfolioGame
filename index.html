@@ -1,0 +1,83 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<script src="js/Game.js"></script>
+</head>
+<body onload="startGame()">
+    <script>
+
+        const canvasWidth = 640;
+        const canvasHeight = 480;
+        const worldWidth = 640;
+        const worldHeight = 480;
+
+        var directions = {
+            "up" : new Point(0,-1),
+            "down" : new Point(0, 1),
+            "left" : new Point(-1, 0),
+            "right" : new Point(1, 0)
+        };
+        
+        var game = null;
+
+        function startGame() 
+        {
+            var canvas = document.createElement("canvas");
+            canvas.width = canvasWidth;
+            canvas.height = canvasHeight;
+            var gameWorld = new GameWorld(worldWidth, worldHeight);
+
+            let playerStart = gameWorld.origin;
+            var player = new Entity(playerStart.x, playerStart.y, "player", 32, 32);
+            //x,y, type, width, height
+
+            player.addComponent("sprite", new SpriteComponent(player,
+                32,32,                    
+                [   
+                    "sprites/2016/spr_player_walk_south_0.png",
+                    "sprites/2016/spr_player_walk_south_1.png",
+                    "sprites/2016/spr_player_walk_south_2.png",
+                    "sprites/2016/spr_player_walk_south_3.png"
+                ], 
+                0.25, true )
+            );
+            player.addComponent("movement", new MovementComponent(player, 4));
+            
+            let gameObjects = {
+                "baseGround" : new Entity( 0, 0, "tile", 128, 128),
+                "player": player
+            };
+
+            gameObjects["baseGround"].addComponent("sprite", new SpriteComponent(gameObjects["baseGround"],
+                128,128,                    
+                [   "sprites/2018/GroundTile1.png",
+                    "sprites/2018/GroundTile2.png",
+                    "sprites/2018/GroundTile3.png",
+                    "sprites/2018/GroundTile4.png",
+                    "sprites/2018/GroundTile5.png"], 
+                0.25, true )
+            );
+
+            gameWorld.gameObjects = gameObjects;
+
+
+            game = new GameDriver(canvas, gameWorld);
+            game.setupPlayerInput(player);
+
+            /*
+            playerInput = new PlayerInputComponent(gameObjects["player"]);
+            window.addEventListener('keydown', function(e){playerInput.onKeyDown(e);});
+            window.addEventListener('keyup', function(e){playerInput.onKeyUp(e);});
+            gameObjects["player"].addComponent("input",playerInput);
+            */
+            document.body.insertBefore(canvas, document.body.childNodes[0]);
+            game.start(setInterval(function(){game.update();}, 10));
+        }
+
+    </script>
+</body>
+</html>

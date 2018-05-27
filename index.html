@@ -49,7 +49,8 @@
             
             let gameObjects = {
                 "baseGround" : new Entity( 0, 0, "tile", 128, 128),
-                "player": player
+                "player": player,
+                "spriteTest": new Entity( 160, 160, "spriteSheet", 48,48)
             };
 
             gameObjects["baseGround"].addComponent("sprite", new SpriteComponent(gameObjects["baseGround"],
@@ -62,12 +63,17 @@
                 0.25, true )
             );
 
+
+            var spriteObj = new Image();
+            spriteObj.src = "sprites/lpc/male_slash.png";
+            //sheetSource, sheetSize, tileSize
+            gameObjects["spriteTest"].addComponent("spriteTest", new SpriteSheet(gameObjects["spriteTest"], spriteObj, new Point(384, 256), new Point(64,64), 1, 6));
+        
             gameWorld.gameObjects = gameObjects;
 
 
             game = new GameDriver(canvas, gameWorld);
             game.setupPlayerInput(player);
-
             /*
             playerInput = new PlayerInputComponent(gameObjects["player"]);
             window.addEventListener('keydown', function(e){playerInput.onKeyDown(e);});

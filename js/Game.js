@@ -348,3 +348,84 @@ class GameDriver
     }
 
 }
+
+class AnimFrame extends Point
+{
+    constructor(x, y, duration, nextId)
+    {
+        super(x,y);
+        this.duration = duration;
+        this.nextId = nextId;
+    }
+}
+
+class SpriteSheet extends SceneComponent
+{
+    constructor(owner, sheetObj, sheetSize, tileSize, frameLength = 0.5, startIndex = 0)
+    {
+        super(owner);
+        this.sheetObj = sheetObj;
+        this.tileSize = tileSize;
+        this.sheetSize = sheetSize;
+        this.numTiles = new Point(
+            this.sheetSize.x / this.tileSize.x,
+            this.sheetSize.y / this.tileSize.y);
+        this.tileData = [];
+        var k = 0;
+        for(var i = 0; i < this.numTiles.y; i++)
+        {
+            for(var j = 0; j < this.numTiles.x; j++)
+            {
+                this.tileData[k] = new AnimFrame(
+                    j * this.tileSize.x, 
+                    i * this.tileSize.y, 
+                    frameLength,
+                k+1);
+                k++;
+            }
+            this.tileData[k-1].nextId = k - this.numTiles.x;
+        }
+        this.tileIndex = startIndex;
+        this.frameTime = 0.0;
+
+    }
+
+    update(deltaTime)
+    {
+        this.frameTime += deltaTime;
+        if(this.frameTime >= this.tileData[this.tileIndex].duration)
+        {
+            this.frameTime -= this.tileData[this.tileIndex].duration;
+            this.tileIndex = this.tileData[this.tileIndex].nextId;      
+        }
+    }
+
+    get currentTileX()
+    {
+        return this.tileData[this.tileIndex].x;
+    }
+
+    get currentTileY()
+    {
+        return this.tileData[this.tileIndex].y;
+    }
+
+    render(context, deltaTime)
+    {
+        //this.updateImage(deltaTime);
+        context.save();
+        context.translate(this.worldX, this.worldY);
+        context.rotate(this.angle);
+        context.drawImage(
+                this.sheetObj,
+                this.currentTileX,
+                this.currentTileY,
+                this.tileSize.x,
+                this.tileSize.y, 
+                0, 
+                0,
+                this.owner.width,
+                this.owner.height);
+        context.restore();
+    }
+}

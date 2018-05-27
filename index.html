@@ -68,6 +68,10 @@
             spriteObj.src = "sprites/lpc/male_slash.png";
             //sheetSource, sheetSize, tileSize
             gameObjects["spriteTest"].addComponent("spriteTest", new SpriteSheet(gameObjects["spriteTest"], spriteObj, new Point(384, 256), new Point(64,64), 1, 6));
+            var pantsObj = new Image();
+            pantsObj.src = "sprites/lpc/male_slash_pants.png";
+            //sheetSource, sheetSize, tileSize
+            gameObjects["spriteTest"].addComponent("spritePants", new SpriteSheet(gameObjects["spriteTest"], pantsObj, new Point(384, 256), new Point(64,64), 1, 6));
         
             gameWorld.gameObjects = gameObjects;
 

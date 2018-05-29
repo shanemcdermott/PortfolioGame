@@ -589,7 +589,7 @@ class SpriteSheet extends SceneComponent
         this.frameTime += deltaTime;
         if(this.frameTime >= this.tileData[this.tileIndex].duration)
         {
-            this.frameTime -= this.tileData[this.tileIndex].duration;
+            this.frameTime = 0.0;
             this.tileIndex = this.tileData[this.tileIndex].nextId;      
         }
     }

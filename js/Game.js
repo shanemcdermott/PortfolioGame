@@ -5,6 +5,16 @@ class Point
         this.y = y;
     }
 
+    add(point)
+    {
+        return new Point(this.x + point.x, this.y + point.y);
+    }
+
+    sub(point)
+    {
+        return new Point(this.x - point.x, this.y - point.y);
+    }
+
     static distance(a, b) {
         const dx = a.x - b.x;
         const dy = a.y - b.y;
@@ -13,20 +23,67 @@ class Point
     }
 }
 
-class Entity extends Point
+class Transform
 {
-    constructor(x,y, type, width, height) 
+    constructor(position = new Point(0,0))
     {
-        super(x,y);
-        this.type = type;
-        this.components = {};
-        this.width = width;
-        this.height = height;
+        this.position = position;
+        this.scale = new Point(1,1);
+        this.skew = new Point(0,0);
     }
 
-    addComponent(name, component)
+    apply(context)
     {
-        this.components[name] = component;
+        context.transform(this.scale.x,this.skew.x,this.skew.y,this.scale.y,this.position.x,this.position.y);
+    }
+}
+
+class Entity
+{
+    constructor(type, position = new Point(0,0)) 
+    {
+        this.type = type;
+        this.transform = new Transform(position);
+        this.components = {};
+    }
+
+    get x()
+    {
+        return this.transform.position.x;
+    }
+    set x(val)
+    {
+        this.transform.position.x = val;
+    }
+
+    get y()
+    {
+        return this.transform.position.y;
+    }
+
+    set y(val)
+    {
+        this.transform.position.y = val;
+    }
+
+    get position()
+    {
+        return this.transform.position;
+    }
+
+    set position(val)
+    {
+        this.transform.position = val;
+    }
+
+    addComponent(component)
+    {
+        this.components[component.name] = component;
+    }
+
+    removeComponent(component)
+    {
+        delete this.components[component.name];
     }
 
     update(deltaTime) 
@@ -42,6 +99,8 @@ class Entity extends Point
 
     render(context, deltaTime)
     {
+        context.save();
+        this.transform.apply(context);
         for(var index in this.components)
         {
             if(this.components[index] != null)
@@ -49,30 +108,58 @@ class Entity extends Point
                 this.components[index].render(context, deltaTime);
             }
         }
-
+        context.restore();
     }    
 }        
 
 //constructor: owner
 class Component 
 {
-    constructor(owner)
+    constructor(name, owner, zOrder=0)
     {
+        //Owning Entity
         this.owner = owner;
+        //Component Name
+        this.name = name;
+        //Render order
+        this.zOrder = zOrder;
     }
+
+    get zOrder()
+    {
+        return this.z;
+    }
+
+    set zOrder(value)
+    {
+        this.z = value;
+    }
+
+
+    register(world)
+    {
+        this.world = world;
+    }
+
     update(deltaTime)
     {}
 
     render(context, deltaTime)
     {}
+
+    destroy()
+    {
+        this.world.deregisterComponent(this);
+        this.owner.removeComponent(this);
+    }
 }
 
 //constructor: owner, speed
 class MovementComponent extends Component
 {
-    constructor(owner, speed)
+    constructor(name, owner, speed=1, zOrder=-1)
     {
-        super(owner);
+        super(name, owner, zOrder);
         this.speed = speed;
         this.velocity = new Point();
     }
@@ -88,13 +175,23 @@ class MovementComponent extends Component
 //constructor: owner
 class SceneComponent extends Component
 {
-    constructor(owner)
+    constructor(name, owner, position = new Point(), angle = 0.0)
     {
-        super(owner);
-        this.position = new Point();
-        this.angle = 0.0;
+        super(name, owner);
+        this.transform = new Transform(position);
+        this.angle = angle;
     }
     
+    get position()
+    {
+        return this.transform.position;
+    }
+    
+    set position(val)
+    {
+        this.transform.position = val;
+    }
+
     get x()
     {
         return this.position.x;
@@ -115,32 +212,99 @@ class SceneComponent extends Component
         this.position.y = value;
     }
 
-    get worldX()
+    get scale()
     {
-        return this.x + this.owner.x;
+        return this.transform.scale;
     }
 
-    get worldY()
+    set scale(value)
     {
-        return this.y + this.owner.y;
+        this.transform.scale = value;
+    }
+}
+
+class BoundsComponent extends SceneComponent
+{
+    constructor(name, owner, position = new Point(0,0), angle = 0.0)
+    {
+        super(name, owner, position, angle);
     }
 
-    setPosition(pos)
+    contains(point)
     {
-        this.position = pos;
+        throw new TypeError('function: contains has not been defined in child class');
+    }
+
+    intersects(otherBounds)
+    {
+        throw new TypeError('function: intersects has not been defined in child class!');
+    }
+}
+
+class BoxComponent extends BoundsComponent
+{
+    constructor(name, owner, width=1, height=1, position = new Point(0,0), angle= 0.0)
+    {
+        super(name, owner, position, angle);
+        this.size = new Point(width, height);
+    }
+
+    get width()
+    {
+        return this.size.x;
+    }
+
+    get height()
+    {
+        return this.size.y;
+    }
+
+    get halfSize()
+    {
+        return new Point(this.width * 0.5, this.height * 0.5);
+    }
+
+    get min()
+    {
+        return this.position.sub(this.halfSize);
+    }
+
+    get max()
+    {
+        return this.position.add(this.halfSize);
+    }
+
+    contains(point)
+    {
+        return point.x > this.min.x && point.x < this.max.x &&
+            point.y > this.min.y && point.y < this.max.y;
+    }
+
+    intersects(otherBounds)
+    {
+        return this.intersectsAABB(otherBounds);
+    }
+
+    intersectsAABB(aabb)
+    {
+        var otherMin = aabb.min;
+        var otherMax = aabb.max;
+
+        if(this.min.x > otherMin.x || otherMin.x > this.max.x) return false;
+        if(this.min.y > otherMax.y || otherMin.y > this.min.y) return false;
+
+        return true;
     }
 }
 
 //owner, width, height, imageFrames, fps, looping
-class SpriteComponent extends SceneComponent
+class SpriteComponent extends BoxComponent
 {
-    constructor(owner, width, height, imageFrames, fps, looping)
+    constructor(name, owner, width, height, imageFrames, fps, looping = true)
     {
-        super(owner);
+        super(name, owner, width, height);
         this.imageFrames = imageFrames;
         this.fps = fps;
-        this.width = width;
-        this.height = height;
         this.looping = looping;
         this.image = new Image();
         this.imageFrame = 0;
@@ -170,8 +334,7 @@ class SpriteComponent extends SceneComponent
     {
         this.updateImage(deltaTime);
         context.save();
-        context.translate(this.worldX, this.worldY);
-        context.rotate(this.angle);
+        this.transform.apply(context);
         context.drawImage(this.image, 
                 0, 
                 0,
@@ -183,12 +346,13 @@ class SpriteComponent extends SceneComponent
 //constructor: owner
 class PlayerInputComponent extends Component
 {
-    constructor(owner)
+    constructor(name, owner)
     {
-        super(owner);
+        super(name, owner);
         this.movement = this.owner.components["movement"];
         this.keys = [];
         this.mousePos = new Point();
+        this.mouseDelta = new Point();
         this.mouseDown = false;
     }
 
@@ -206,8 +370,10 @@ class PlayerInputComponent extends Component
 
     onMouseMove(event, canvasBounds)
     {
-        this.mousePos.x = event.clientX - canvasBounds.left;
-        this.mousePos.y = event.clientY - canvasBounds.top;
+        this.mouseDelta.x = this.mousePos.x - event.clientX - canvasBounds.left;
+        this.mouseDelta.y = this.mousePos.y - event.clientY - canvasBounds.top;
+        this.mousePos.x += this.mouseDelta.x;
+        this.mousePos.y += this.mouseDelta.y;
     }
 
     onMouseDown(event)
@@ -254,9 +420,12 @@ class GameWorld extends Entity
 {
     constructor(width, height) 
     {
-        super(0,0,"world",width,height);
-        this.origin = new Point(this.width/2, this.height/2);
+        super("world", new Point(0,0));
         this.gameObjects = {};
+        this.components = [];
+        this.bounds = new BoxComponent("bounds",this,width,height);
+        this.registerComponent(this.bounds);
+        this.dirtyRender=false;
     }
 
     get player()
@@ -269,6 +438,22 @@ class GameWorld extends Entity
         this.gameObjects["player"] = value;
     }
 
+    registerComponent(component)
+    {
+        component.register(this);
+        this.components.push(component);
+        component.owner.addComponent(component);
+    }
+
+    deregisterComponent(component)
+    {
+        var index = this.components.indexOf(component);
+        if(index > -1)
+        {
+            this.components.splice(index,1);
+        }
+    }
+
     update(deltaTime)
     {
         for(var index in this.gameObjects)
@@ -279,10 +464,18 @@ class GameWorld extends Entity
 
     render(context, deltaTime)
     {
+        if(this.dirtyRender)
+        {
+            this.components.sort(function(a, b){return a.zOrder - b.zOrder});
+            this.dirtyRender=false;
+        }
+        //context.save();
+        //this.transform.apply(context);
         for(var index in this.gameObjects)
         {
             this.gameObjects[index].render(context, deltaTime);
         }
+        //context.restore();
     }
 }
 
@@ -313,13 +506,13 @@ class GameDriver
 
     setupPlayerInput(player)
     {
-        var playerInput = new PlayerInputComponent(player);
+        var playerInput = new PlayerInputComponent("input", player);
         window.addEventListener('keydown', function(e){playerInput.onKeyDown(e);});
         window.addEventListener('keyup', function(e){playerInput.onKeyUp(e);});
         this.canvas.addEventListener('mousemove', function(e){playerInput.onMouseMove(e, this.getBoundingClientRect());});
         this.canvas.addEventListener('mousedown', function(e){playerInput.onMouseDown(e);});
         this.canvas.addEventListener('mouseup', function(e){playerInput.onMouseUp(e);});
-        player.addComponent("input", playerInput);
+        this.world.registerComponent(playerInput);
         this.playerInput = playerInput;
     }
 
@@ -361,9 +554,9 @@ class AnimFrame extends Point
 
 class SpriteSheet extends SceneComponent
 {
-    constructor(owner, sheetObj, sheetSize, tileSize, frameLength = 0.5, startIndex = 0)
+    constructor(name, owner, sheetObj, sheetSize, tileSize, frameLength = 0.5, startIndex = 0)
     {
-        super(owner);
+        super(name, owner);
         this.sheetObj = sheetObj;
         this.tileSize = tileSize;
         this.sheetSize = sheetSize;
@@ -387,7 +580,8 @@ class SpriteSheet extends SceneComponent
         }
         this.tileIndex = startIndex;
         this.frameTime = 0.0;
-
+        this.width = 32;
+        this.height = 32;
     }
 
     update(deltaTime)
@@ -414,8 +608,9 @@ class SpriteSheet extends SceneComponent
     {
         //this.updateImage(deltaTime);
         context.save();
-        context.translate(this.worldX, this.worldY);
-        context.rotate(this.angle);
+        this.transform.apply(context);
+        //context.translate(this.worldX, this.worldY);
+        //context.rotate(this.angle);
         context.drawImage(
                 this.sheetObj,
                 this.currentTileX,
@@ -424,8 +619,8 @@ class SpriteSheet extends SceneComponent
                 this.tileSize.y, 
                 0, 
                 0,
-                this.owner.width,
-                this.owner.height);
+                this.width,
+                this.height);
         context.restore();
     }
 }

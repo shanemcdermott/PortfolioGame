@@ -31,11 +31,20 @@
             canvas.height = canvasHeight;
             var gameWorld = new GameWorld(worldWidth, worldHeight);
 
-            let playerStart = gameWorld.origin;
-            var player = new Entity(playerStart.x, playerStart.y, "player", 32, 32);
+            let playerStart = new Point(worldWidth / 2, worldHeight / 2);
+            var player = new Entity("player", playerStart);
+            
+            let gameObjects = {
+                "baseGround" : new Entity("tile"),
+                "player": player,
+                "spriteTest": new Entity("spriteSheet", new Point(worldWidth / 1.5, worldHeight / 1.5))
+            };
+            
+            gameWorld.gameObjects = gameObjects;
             //x,y, type, width, height
 
-            player.addComponent("sprite", new SpriteComponent(player,
+
+            gameWorld.registerComponent(new SpriteComponent("sprite", player,
                 32,32,                    
                 [   
                     "sprites/2016/spr_player_walk_south_0.png",
@@ -45,15 +54,8 @@
                 ], 
                 0.25, true )
             );
-            player.addComponent("movement", new MovementComponent(player, 4));
-            
-            let gameObjects = {
-                "baseGround" : new Entity( 0, 0, "tile", 128, 128),
-                "player": player,
-                "spriteTest": new Entity( 160, 160, "spriteSheet", 48,48)
-            };
-
-            gameObjects["baseGround"].addComponent("sprite", new SpriteComponent(gameObjects["baseGround"],
+            gameWorld.registerComponent(new MovementComponent("movement", player, 4));
+            gameWorld.registerComponent(new SpriteComponent("ground", gameObjects["baseGround"],
                 128,128,                    
                 [   "sprites/2018/GroundTile1.png",
                     "sprites/2018/GroundTile2.png",
@@ -67,13 +69,12 @@
             var spriteObj = new Image();
             spriteObj.src = "sprites/lpc/male_slash.png";
             //sheetSource, sheetSize, tileSize
-            gameObjects["spriteTest"].addComponent("spriteTest", new SpriteSheet(gameObjects["spriteTest"], spriteObj, new Point(384, 256), new Point(64,64), 1, 6));
+            gameWorld.registerComponent(new SpriteSheet("spritePawn", gameObjects["spriteTest"], spriteObj, new Point(384, 256), new Point(64,64), 1, 6));
             var pantsObj = new Image();
             pantsObj.src = "sprites/lpc/male_slash_pants.png";
             //sheetSource, sheetSize, tileSize
-            gameObjects["spriteTest"].addComponent("spritePants", new SpriteSheet(gameObjects["spriteTest"], pantsObj, new Point(384, 256), new Point(64,64), 1, 6));
-        
-            gameWorld.gameObjects = gameObjects;
+            gameWorld.registerComponent(new SpriteSheet("spritePants", gameObjects["spriteTest"], pantsObj, new Point(384, 256), new Point(64,64), 1, 6));
+
 
 
             game = new GameDriver(canvas, gameWorld);

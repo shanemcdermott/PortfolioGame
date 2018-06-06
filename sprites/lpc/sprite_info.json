@@ -1,0 +1,286 @@
+{
+    "weapons": {
+        "longsword": {
+            "file": "weapons/longsword.png",
+            "credits": "lpc-characters",
+            "attributes": { 
+                "z": 1,
+                "material": "steel"
+            }
+        },
+        "dagger" :{
+            "file": "weapons/dagger.png",
+            "z": 1,
+            "credits": "lpc-characters"
+        },
+        "quiver": {
+            "file": "weapons/quiver.png",
+            "z": -1,
+            "credits": "lpc-characters"
+        },
+        "dragonspear": {
+            "file": "weapons/dragonspear.png",
+            "z": 1,
+            "credits": "lpc-weapons"
+        },
+        "greatbow": {
+            "file": "weapons/greatbow.png",
+            "z": 1,
+            "credits": "lpc-weapons"
+        },
+        "mace": {
+            "file": "weapons/mace.png",
+            "z": 1,
+            "credits": "lpc-weapons"
+        },
+        "recurvebow": {
+            "file": "weapons/recurvebow.png",
+            "z": 1,
+            "credits": "lpc-weapons"
+        },
+        "sabre": {
+            "file": "weapons/sabre.png",
+            "z": 1,
+            "credits": "lpc-weapons"
+        },
+        "trident": {
+            "file": "weapons/trident.png",
+            "z": 1,
+            "credits": "lpc-weapons"
+        }
+    },
+
+    "belts": {
+        "leather": {
+            "file": " belts/leather.png",
+            "credits": "lpc-characters",
+            "attributes": {
+                	"z": 1,
+                    "material": "leather"
+            }
+        },
+        "rope": {
+            "file": " belts/rope.png",
+            "credits": "lpc-characters",
+            "attributes":{
+                	"z": 1,
+                    "material": "rope"
+            }
+        }
+    },
+
+    "shoes": {
+        "plate": {
+            "file": "shoes/plate.png",
+            "credits": "lpc-characters",
+            "attributes": { 
+                "z": 1,
+                "material": "steel"
+            }
+        },
+        "leather": {
+            "file": "shoes/leather.png",
+            "credits": "lpc-characters",
+            "attributes": { 
+                "z": 1,
+                "material": "leather"
+            }
+        }
+    },
+
+    "gloves":{
+        "plate": {
+            "file": "gloves/plate.png",
+            "credits": "lpc-characters",
+            "attributes": { 
+                "z": 1,
+                "material": "steel"
+            }
+        }
+    },
+
+    "head": {
+        "helmet_chain": {
+            "file": "head/helmet_chain.png",
+            "credits": "lpc-characters",
+            "attributes": { 
+                "z": 2,
+                "material": "chain"
+            }
+        },
+        "hood_chain": {
+            "file": "head/hood_chain.png",
+            "credits": "lpc-characters",
+            "attributes": { 
+                "z": 1,
+                "material": "chain"
+            }
+        },
+        "hat_leather": {
+            "file": "head/hat_leather.png",
+            "credits": "lpc-characters",
+            "attributes": { 
+                "z": 1,
+                "material": "leather"
+            }
+        },
+        "helmet_plate": {
+            "file": "head/helmet_plate.png",
+            "credits": "lpc-characters",
+            "attributes": { 
+                "z": 1,
+                "material": "steel"
+            }
+        },
+        "hood_cloth": {
+            "file": "head/hood_cloth.png",
+            "credits": "lpc-characters",
+            "attributes": { 
+                "z": 1,
+                "material": "cloth"
+            }
+        }
+    },
+
+    "hair": {
+        "helmet_chain": {
+            "file": "hair/def_blonde.png",
+            "credits": "lpc-characters",
+            "attributes": { 
+                "z": 1,
+                "material": "hair"
+            }
+        }
+    },
+
+    "legs": {
+        "pants_turq": {
+            "file": "legs/pants_turq.png",
+            "credits": "lpc-characters",
+            "attributes": { 
+                "z": 1,
+                "material": "cloth"
+            }
+        },
+        "pants_green": {
+            "file": "legs/pants_green.png",
+            "credits": "lpc-characters",
+            "attributes": { 
+                "z": 1,
+                "material": "cloth"
+            }
+        },
+        "pants_plate": {
+            "file": "legs/pants_plate.png",
+            "credits": "lpc-characters",
+            "attributes": { 
+                "z": 1,
+                "material": "steel"
+            }
+        },
+        "skirt_robe": {
+            "file": "legs/skirt_robe.png",
+            "credits": "lpc-characters",
+            "attributes": { 
+                "z": 1,
+                "material": "cloth"
+            }
+        }
+    },
+
+    "torso": {
+        "bracers_leather": {
+            "file": "torso/bracers_leather.png",
+            "credits": "lpc-characters",
+            "attributes": { 
+                "z": 2,
+                "material": "leather"
+            }
+        },
+        "shoulders_plate": {
+            "file": "torso/shoulders_plate.png",
+            "credits": "lpc-characters",
+            "attributes": { 
+                "z": 2,
+                "material": "steel"
+            }
+        },
+
+        "shoulders_leather": {
+            "file": "torso/shoulders_leather.png",
+            "credits": "lpc-characters",
+            "attributes": { 
+                "z": 2,
+                "material": "leather"
+            }
+        },
+
+        "jacket_chain": {
+            "file": "torso/jacket_chain.png",
+            "credits": "lpc-characters",
+            "attributes": { 
+                "z": 1,
+                "material": "chain"
+            }
+        },
+        "armor_chain": {
+            "file": "torso/armor_chain.png",
+            "credits": "lpc-characters",
+            "attributes": { 
+                "z": 1,
+                "material": "chain"
+            }
+        },
+        "armor_leather": {
+            "file": "torso/armor_leather.png",
+            "credits": "lpc-characters",
+            "attributes": { 
+                "z": 1,
+                "material": "leather"
+            }
+        },
+        "armor_plate": {
+            "file": "torso/armor_plate.png",
+            "credits": "lpc-characters",
+            "attributes": { 
+                "z": 1,
+                "material": "steel"
+            }
+        },
+        "shirt_white": {
+            "file": "torso/shirt_white.png",
+            "credits": "lpc-characters",
+            "attributes": { 
+                "z": 0,
+                "material": "cloth"
+            }
+        },
+        "shirt_robe": {
+            "file": "torso/shirt_robe.png",
+            "credits": "lpc-characters",
+            "attributes": { 
+                "z": 0,
+                "material": "cloth"
+            }
+        }
+    },
+
+    "body": {
+        "human_male": {
+            "file": "body/human_male.png",
+            "credits": "lpc-characters",
+            "attributes": { 
+                "z": 0,
+                "material": "flesh"
+            }
+        },
+        "skeleton": {
+            "file": "body/skeleton.png",
+            "credits": "lpc-characters",
+            "attributes": { 
+                "z": 0,
+                "material": "bone"
+            }
+        }
+    }
+}

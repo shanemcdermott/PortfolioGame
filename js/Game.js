@@ -454,6 +454,11 @@ class GameWorld extends Entity
         }
     }
 
+    sortComponents()
+    {
+        this.components.sort(function(a, b){return a.zOrder - b.zOrder});
+    }
+
     update(deltaTime)
     {
         for(var index in this.gameObjects)
@@ -464,18 +469,13 @@ class GameWorld extends Entity
 
     render(context, deltaTime)
     {
-        if(this.dirtyRender)
-        {
-            this.components.sort(function(a, b){return a.zOrder - b.zOrder});
-            this.dirtyRender=false;
-        }
-        //context.save();
-        //this.transform.apply(context);
+        context.save();
+        this.transform.apply(context);
         for(var index in this.gameObjects)
         {
             this.gameObjects[index].render(context, deltaTime);
         }
-        //context.restore();
+        context.restore();
     }
 }
 

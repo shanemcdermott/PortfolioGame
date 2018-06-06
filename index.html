@@ -34,10 +34,13 @@
             let playerStart = new Point(worldWidth / 2, worldHeight / 2);
             var player = new Entity("player", playerStart);
             
+            var shane = new Entity("shane", new Point(0,0));
+            shane.transform.scale = new Point(5,5);
+
             let gameObjects = {
                 "baseGround" : new Entity("tile"),
                 "player": player,
-                "spriteTest": new Entity("spriteSheet", new Point(worldWidth / 1.5, worldHeight / 1.5))
+                "shane": shane
             };
             
             gameWorld.gameObjects = gameObjects;
@@ -65,16 +68,39 @@
                 0.25, true )
             );
 
+            let sheetSize = new Point(1152, 768);
+            let tileSize = new Point(192, 192);
 
             var spriteObj = new Image();
-            spriteObj.src = "sprites/lpc/male_slash.png";
+            spriteObj.src = "sprites/lpc/body/human_male.png";
             //sheetSource, sheetSize, tileSize
-            gameWorld.registerComponent(new SpriteSheet("spritePawn", gameObjects["spriteTest"], spriteObj, new Point(384, 256), new Point(64,64), 1.0, 6));
+            gameWorld.registerComponent(new SpriteSheet("shanePawn", shane, spriteObj, sheetSize, tileSize, 1.0, 6));
             var pantsObj = new Image();
-            pantsObj.src = "sprites/lpc/male_slash_pants.png";
+            pantsObj.src = "sprites/lpc/legs/pants_turq.png";
             //sheetSource, sheetSize, tileSize
-            gameWorld.registerComponent(new SpriteSheet("spritePants", gameObjects["spriteTest"], pantsObj, new Point(384, 256), new Point(64,64), 1.0, 6));
+            gameWorld.registerComponent(new SpriteSheet("shanePants", shane, pantsObj, sheetSize, tileSize, 1.0, 6));
+            
+            var shirtImg = new Image();
+            shirtImg.src = "sprites/lpc/torso/shirt_white.png";
+            gameWorld.registerComponent(new SpriteSheet("shaneShirt", shane, shirtImg, sheetSize, tileSize, 1.0, 6));
 
+            var hairImg = new Image();
+            hairImg.src = "sprites/lpc/hair/def_blonde.png";
+            gameWorld.registerComponent(new SpriteSheet("shaneHair", shane, hairImg, sheetSize, tileSize, 1.0, 6));
+
+            var swordImg = new Image();
+            swordImg.src = "sprites/lpc/weapons/longsword.png";
+            gameWorld.registerComponent(new SpriteSheet("shaneSword", shane, swordImg, sheetSize, tileSize, 1.0, 6));
+
+            //var swordImg = new Image();
+            //swordImg.src = "sprites/lpc/sword_slash.png";
+            //name, owner, sheetObj, sheetSize, tileSize, frameLength = 0.5, startIndex = 0
+            //var swordObj = new SpriteSheet("spriteSword", shane, swordImg, new Point(1152, 768), new Point(192,192), 1.0, 6);
+            //swordObj.zOrder = 10;
+            //swordObj.transform.scale = new Point(2,2);
+            //gameWorld.registerComponent(swordObj);
+            
+            //gameWorld.sortComponents();
 
 
             game = new GameDriver(canvas, gameWorld);

@@ -1,120 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ALL YOUR BASE ARE BELONG TO SHANE</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap-4.0.0.css" rel="stylesheet">
+	  
+	  	<!-- Icons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="css/main.css" rel="stylesheet" type="text/css">
+  <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
+  <script>var __adobewebfontsappname__="dreamweaver"</script>
+  <script src="http://use.edgefonts.net/raleway:n1,n3,n6,n5:default.js" type="text/javascript"></script>
+  <script src="js/Game.js"></script>
+  </head>
+  <body>
+	<div class="container body-wrap">
+		<nav class="navbar navbar-expand-lg fixed-top" id="my-nav">
+			<div class="navbar-header">
+      			<a class="navbar-brand" href="/">Shane</a>
+      			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      				<span class="navbar-toggler-icon"></span>
+      			</button>
+			</div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		  <div class="navbar-nav navbar-left">
+        	<ul class="nav nav-tabs">
+          		<li>
+            		<a class="nav-link" href="/AboutMe/">About Me</a>
+          		</li>
+   				<li>
+					<a class="nav-link" href="/Portfolio/">Portfolio</a>
+				</li>
+			  </ul>
+		  </div>
+		  
+		<ul class="navbar-nav ml-auto">
+        	<li><a href="https://www.linkedin.com/in/shane-mcdermott-gamedev"><i class="fa fa-linkedin-square icon" alt="LinkedIn"></i></a></li>
+        	<li><a href="https://www.github.com/shanemcdermott"><i class="fa fa-github icon" alt="GitHub"></i></a></li>
+    		<li><a href="https://www.twitter.com/Shane_McDerm"><i class="fa fa-twitter-square icon" alt="Twitter"></i></a></li>
+    		<li><a href="https://www.facebook.com/shane.r.mcdermott"><i class="fa fa-facebook-square icon" alt="Facebook"></i></a></li>
+        	<li><a href="mailto:admin@shanemcdermott.ninja"><i class="fa fa-envelope-square icon" alt="E-Mail"></i></a></li>
+    	</ul>
+      </div>
+	<hr>
+    </nav>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<script src="js/Game.js"></script>
-</head>
-<body onload="startGame()">
+    <section>
+      <div class="jumbotron text-center mt-2" id="greeting-panel">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h1 class="text-uppercase greeting">Hello There!</h1>
+				<h2>I'm Shane.</h2>
+              <p>I make games.</p>
+			</div>
+          </div>
+        </div>
+      </div>
+    </section>
+<section>
+
+    <div class="container">
+     
+		<div id ="game-cards" class="card-deck">
+			<div class="card bg-smooth">
+				<img class="card-img-top" src="https://ggj.s3.amazonaws.com/styles/game_sidebar__wide/game/featured_image/intro1_0.png?itok=jcnU_9wn&timestamp=1517167853" alt="Card image">
+			    <div class="card-body text-center">
+					<h4 class="card-title">Lil Necro</h4>
+          <p class="card-text">Created for Global Game Jam 2018</p>
+          <btn class="btn btn-success" onclick="initGame('Lil Necro')">Details</btn>
+				</div>
+			</div>
+			<div class="card bg-smooth">
+				<img class="card-img-top" src="images/MinotaurSplash.png" alt = "Lair of the Minotaur">
+			    <div class="card-body text-center">
+					<h4 class="card-title">Lair of the Minotaur</h4>
+          <p class="card-text">Solve a series of procedurally generated labyrinths!</p>
+          <btn class="btn btn-success" onclick="initGame('Lair of the Minotaur')">Details</btn>
+				</div>
+      </div>
+      <div class="card bg-smooth">
+				<img class="card-img-top" src="images/MinotaurSplash.png" alt = "Lair of the Minotaur">
+			    <div class="card-body text-center">
+					<h4 class="card-title">What Could Have Been</h4>
+          <p class="card-text">September 2016 Unreal Engine 4 Game Jam</p>
+          <btn class="btn btn-success" onclick="initGame('What Could Have Been')">Details</btn>
+				</div>
+			</div>
+			
+    </div>
+    <div class="row" id="canvas-row" style="visibility:collapse">
+          <div class="col-lg-12 text-center">
+            <div class="card">
+              <canvas id="game-canvas" class="card-img-top"></canvas>
+                <div class="card-body text-center bg-smooth text-white">
+                <h4 id="game-info-title" class="card-title">Overview</h4>
+                <p id="game-info-details" class="card-text">Select one of the cards above for more information.</p>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>  
+
+    <hr>
+      <div class="row">
+        <div class="col-lg-12 text-center">
+            	<iframe width="720" height="480" src="https://www.youtube-nocookie.com/embed/videoseries?list=PL505MTZn9Kw59bricQZiAOt0CHKxbrmb8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <h4>Here's an overview of some of my work.</h4>
+            <h6>Visit my <a href="/Portfolio/">portfolio</a> for more.</h6>
+          </div>
+      </div>
+
+    </div>
+    </section>
+    <hr>
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h1>I'm currently seeking full-time employment.</h1>
+			  <p>I'll be receiving my Bachelor's Degree in Computer Science this August.</p>
+			  <p>I'm looking for something challenging with room for growth.</p>
+            <a class="btn btn-success" href="mailto:admin@shanemcdermott.ninja" role="button">Let's work together!</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <hr>
     <script>
 
-        const canvasWidth = 640;
-        const canvasHeight = 480;
-        const worldWidth = 640;
-        const worldHeight = 480;
+      var gameDetails = {
+        'Lil Necro': { 
+          description: "Play as a young necromancer who must communicate with her minions using cards enscribed with disease vectors and emotions.",
+          devTime: "48 hours"
+        },
+        'What Could Have Been': { 
+          description: "This was my first game jam experience.",
+          devTime: "48 hours" 
+        }
+      };
 
-        var directions = {
-            "up" : new Point(0,-1),
-            "down" : new Point(0, 1),
-            "left" : new Point(-1, 0),
-            "right" : new Point(1, 0)
+
+
+      var game = null;
+
+      function initGame(gameName)
+      {
+
+        document.getElementById('canvas-row').style.visibility = "visible";
+        document.getElementById('game-info-title').textContent = gameName;
+        document.getElementById("game-info-details").textContent = gameDetails[gameName].description;
+        startGame();
+      }
+
+    function startGame() 
+    {
+      /*
+        var canvas = document.createElement("canvas");
+        canvas.width = canvasWidth;
+        canvas.height = canvasHeight;
+      */
+
+        var canvas = document.getElementById("game-canvas");
+        var canvasWidth = canvas.width;
+        var canvasHeight = canvas.height;
+        var worldWidth = 360;
+        var worldHeight = 240;
+
+
+        var gameWorld = new GameWorld(worldWidth, worldHeight);
+        //gameWorld.transform.scale = new Point(canvasWidth/worldWidth, canvasHeight/worldHeight);
+        //gameWorld.transform.position = new Point(worldWidth / 2, worldHeight / 2);
+        let playerStart = new Point(worldWidth / 2, worldHeight / 2);
+        var player = new Entity("player", playerStart);
+        
+        var shane = new Entity("shane", new Point(0,0));
+        shane.transform.scale = new Point(5,5);
+
+        let gameObjects = {
+            "baseGround" : new Entity("tile"),
+            "player": player,
+            "shane": shane
         };
         
-        var game = null;
-
-        function startGame() 
-        {
-            var canvas = document.createElement("canvas");
-            canvas.width = canvasWidth;
-            canvas.height = canvasHeight;
-            var gameWorld = new GameWorld(worldWidth, worldHeight);
-
-            let playerStart = new Point(worldWidth / 2, worldHeight / 2);
-            var player = new Entity("player", playerStart);
-            
-            var shane = new Entity("shane", new Point(0,0));
-            shane.transform.scale = new Point(5,5);
-
-            let gameObjects = {
-                "baseGround" : new Entity("tile"),
-                "player": player,
-                "shane": shane
-            };
-            
-            gameWorld.gameObjects = gameObjects;
-            //x,y, type, width, height
+        gameWorld.gameObjects = gameObjects;
+        //x,y, type, width, height
 
 
-            gameWorld.registerComponent(new SpriteComponent("sprite", player,
-                32,32,                    
-                [   
-                    "sprites/2016/spr_player_walk_south_0.png",
-                    "sprites/2016/spr_player_walk_south_1.png",
-                    "sprites/2016/spr_player_walk_south_2.png",
-                    "sprites/2016/spr_player_walk_south_3.png"
-                ], 
-                0.25, true )
-            );
-            gameWorld.registerComponent(new MovementComponent("movement", player, 4));
-            gameWorld.registerComponent(new SpriteComponent("ground", gameObjects["baseGround"],
-                128,128,                    
-                [   "sprites/2018/GroundTile1.png",
-                    "sprites/2018/GroundTile2.png",
-                    "sprites/2018/GroundTile3.png",
-                    "sprites/2018/GroundTile4.png",
-                    "sprites/2018/GroundTile5.png"], 
-                0.25, true )
-            );
+        gameWorld.registerComponent(new SpriteComponent("sprite", player,
+            32,32,                    
+            [   
+                "sprites/2016/spr_player_walk_south_0.png",
+                "sprites/2016/spr_player_walk_south_1.png",
+                "sprites/2016/spr_player_walk_south_2.png",
+                "sprites/2016/spr_player_walk_south_3.png"
+            ], 
+            0.25, true )
+        );
+        gameWorld.registerComponent(new MovementComponent("movement", player, 4));
+        gameWorld.registerComponent(new SpriteComponent("ground", gameObjects["baseGround"],
+            128,128,                    
+            [   "sprites/2018/GroundTile1.png",
+                "sprites/2018/GroundTile2.png",
+                "sprites/2018/GroundTile3.png",
+                "sprites/2018/GroundTile4.png",
+                "sprites/2018/GroundTile5.png"], 
+            0.25, true )
+        );
 
-            let sheetSize = new Point(1152, 768);
-            let tileSize = new Point(192, 192);
+        let sheetSize = new Point(1152, 768);
+        let tileSize = new Point(192, 192);
 
-            var spriteObj = new Image();
-            spriteObj.src = "sprites/lpc/body/human_male.png";
-            //sheetSource, sheetSize, tileSize
-            gameWorld.registerComponent(new SpriteSheet("shanePawn", shane, spriteObj, sheetSize, tileSize, 1.0, 6));
-            var pantsObj = new Image();
-            pantsObj.src = "sprites/lpc/legs/pants_turq.png";
-            //sheetSource, sheetSize, tileSize
-            gameWorld.registerComponent(new SpriteSheet("shanePants", shane, pantsObj, sheetSize, tileSize, 1.0, 6));
-            
-            var shirtImg = new Image();
-            shirtImg.src = "sprites/lpc/torso/shirt_white.png";
-            gameWorld.registerComponent(new SpriteSheet("shaneShirt", shane, shirtImg, sheetSize, tileSize, 1.0, 6));
+        var spriteObj = new Image();
+        spriteObj.src = "sprites/lpc/body/human_male.png";
+        //sheetSource, sheetSize, tileSize
+        gameWorld.registerComponent(new SpriteSheet("shanePawn", shane, spriteObj, sheetSize, tileSize, 1.0, 6));
+        var pantsObj = new Image();
+        pantsObj.src = "sprites/lpc/legs/pants_turq.png";
+        //sheetSource, sheetSize, tileSize
+        gameWorld.registerComponent(new SpriteSheet("shanePants", shane, pantsObj, sheetSize, tileSize, 1.0, 6));
+        
+        var shirtImg = new Image();
+        shirtImg.src = "sprites/lpc/torso/shirt_white.png";
+        gameWorld.registerComponent(new SpriteSheet("shaneShirt", shane, shirtImg, sheetSize, tileSize, 1.0, 6));
 
-            var hairImg = new Image();
-            hairImg.src = "sprites/lpc/hair/def_blonde.png";
-            gameWorld.registerComponent(new SpriteSheet("shaneHair", shane, hairImg, sheetSize, tileSize, 1.0, 6));
+        var hairImg = new Image();
+        hairImg.src = "sprites/lpc/hair/def_blonde.png";
+        gameWorld.registerComponent(new SpriteSheet("shaneHair", shane, hairImg, sheetSize, tileSize, 1.0, 6));
 
-            var swordImg = new Image();
-            swordImg.src = "sprites/lpc/weapons/longsword.png";
-            gameWorld.registerComponent(new SpriteSheet("shaneSword", shane, swordImg, sheetSize, tileSize, 1.0, 6));
+        var swordImg = new Image();
+        swordImg.src = "sprites/lpc/weapons/longsword.png";
+        gameWorld.registerComponent(new SpriteSheet("shaneSword", shane, swordImg, sheetSize, tileSize, 1.0, 6));
 
-            //var swordImg = new Image();
-            //swordImg.src = "sprites/lpc/sword_slash.png";
-            //name, owner, sheetObj, sheetSize, tileSize, frameLength = 0.5, startIndex = 0
-            //var swordObj = new SpriteSheet("spriteSword", shane, swordImg, new Point(1152, 768), new Point(192,192), 1.0, 6);
-            //swordObj.zOrder = 10;
-            //swordObj.transform.scale = new Point(2,2);
-            //gameWorld.registerComponent(swordObj);
-            
-            //gameWorld.sortComponents();
+        //var swordImg = new Image();
+        //swordImg.src = "sprites/lpc/sword_slash.png";
+        //name, owner, sheetObj, sheetSize, tileSize, frameLength = 0.5, startIndex = 0
+        //var swordObj = new SpriteSheet("spriteSword", shane, swordImg, new Point(1152, 768), new Point(192,192), 1.0, 6);
+        //swordObj.zOrder = 10;
+        //swordObj.transform.scale = new Point(2,2);
+        //gameWorld.registerComponent(swordObj);
+        
+        //gameWorld.sortComponents();
 
 
-            game = new GameDriver(canvas, gameWorld);
-            game.setupPlayerInput(player);
-            /*
-            playerInput = new PlayerInputComponent(gameObjects["player"]);
-            window.addEventListener('keydown', function(e){playerInput.onKeyDown(e);});
-            window.addEventListener('keyup', function(e){playerInput.onKeyUp(e);});
-            gameObjects["player"].addComponent("input",playerInput);
-            */
-            document.body.insertBefore(canvas, document.body.childNodes[0]);
-            game.start(setInterval(function(){game.update();}, 10));
-        }
+        game = new GameDriver(canvas, gameWorld);
+        game.setupPlayerInput(player);
+        /*
+        playerInput = new PlayerInputComponent(gameObjects["player"]);
+        window.addEventListener('keydown', function(e){playerInput.onKeyDown(e);});
+        window.addEventListener('keyup', function(e){playerInput.onKeyUp(e);});
+        gameObjects["player"].addComponent("input",playerInput);
+        */
+        //document.body.insertBefore(canvas, document.body.childNodes[0]);
+        game.start(setInterval(function(){game.update();}, 10));
+    }
 
     </script>
-</body>
+</div>
+    <footer class="text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <p>Copyright © Shane McDermott. All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap-4.0.0.js"></script>
+  </body>
 </html>

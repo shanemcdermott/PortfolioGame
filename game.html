@@ -1,0 +1,120 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<script src="js/Game.js"></script>
+</head>
+<body onload="startGame()">
+    <script>
+
+        const canvasWidth = 640;
+        const canvasHeight = 480;
+        const worldWidth = 640;
+        const worldHeight = 480;
+
+        var directions = {
+            "up" : new Point(0,-1),
+            "down" : new Point(0, 1),
+            "left" : new Point(-1, 0),
+            "right" : new Point(1, 0)
+        };
+        
+        var game = null;
+
+        function startGame() 
+        {
+            var canvas = document.createElement("canvas");
+            canvas.width = canvasWidth;
+            canvas.height = canvasHeight;
+            var gameWorld = new GameWorld(worldWidth, worldHeight);
+
+            let playerStart = new Point(worldWidth / 2, worldHeight / 2);
+            var player = new Entity("player", playerStart);
+            
+            var shane = new Entity("shane", new Point(0,0));
+            shane.transform.scale = new Point(5,5);
+
+            let gameObjects = {
+                "baseGround" : new Entity("tile"),
+                "player": player,
+                "shane": shane
+            };
+            
+            gameWorld.gameObjects = gameObjects;
+            //x,y, type, width, height
+
+
+            gameWorld.registerComponent(new SpriteComponent("sprite", player,
+                32,32,                    
+                [   
+                    "sprites/2016/spr_player_walk_south_0.png",
+                    "sprites/2016/spr_player_walk_south_1.png",
+                    "sprites/2016/spr_player_walk_south_2.png",
+                    "sprites/2016/spr_player_walk_south_3.png"
+                ], 
+                0.25, true )
+            );
+            gameWorld.registerComponent(new MovementComponent("movement", player, 4));
+            gameWorld.registerComponent(new SpriteComponent("ground", gameObjects["baseGround"],
+                128,128,                    
+                [   "sprites/2018/GroundTile1.png",
+                    "sprites/2018/GroundTile2.png",
+                    "sprites/2018/GroundTile3.png",
+                    "sprites/2018/GroundTile4.png",
+                    "sprites/2018/GroundTile5.png"], 
+                0.25, true )
+            );
+
+            let sheetSize = new Point(1152, 768);
+            let tileSize = new Point(192, 192);
+
+            var spriteObj = new Image();
+            spriteObj.src = "sprites/lpc/body/human_male.png";
+            //sheetSource, sheetSize, tileSize
+            gameWorld.registerComponent(new SpriteSheet("shanePawn", shane, spriteObj, sheetSize, tileSize, 1.0, 6));
+            var pantsObj = new Image();
+            pantsObj.src = "sprites/lpc/legs/pants_turq.png";
+            //sheetSource, sheetSize, tileSize
+            gameWorld.registerComponent(new SpriteSheet("shanePants", shane, pantsObj, sheetSize, tileSize, 1.0, 6));
+            
+            var shirtImg = new Image();
+            shirtImg.src = "sprites/lpc/torso/shirt_white.png";
+            gameWorld.registerComponent(new SpriteSheet("shaneShirt", shane, shirtImg, sheetSize, tileSize, 1.0, 6));
+
+            var hairImg = new Image();
+            hairImg.src = "sprites/lpc/hair/def_blonde.png";
+            gameWorld.registerComponent(new SpriteSheet("shaneHair", shane, hairImg, sheetSize, tileSize, 1.0, 6));
+
+            var swordImg = new Image();
+            swordImg.src = "sprites/lpc/weapons/longsword.png";
+            gameWorld.registerComponent(new SpriteSheet("shaneSword", shane, swordImg, sheetSize, tileSize, 1.0, 6));
+
+            //var swordImg = new Image();
+            //swordImg.src = "sprites/lpc/sword_slash.png";
+            //name, owner, sheetObj, sheetSize, tileSize, frameLength = 0.5, startIndex = 0
+            //var swordObj = new SpriteSheet("spriteSword", shane, swordImg, new Point(1152, 768), new Point(192,192), 1.0, 6);
+            //swordObj.zOrder = 10;
+            //swordObj.transform.scale = new Point(2,2);
+            //gameWorld.registerComponent(swordObj);
+            
+            //gameWorld.sortComponents();
+
+
+            game = new GameDriver(canvas, gameWorld);
+            game.setupPlayerInput(player);
+            /*
+            playerInput = new PlayerInputComponent(gameObjects["player"]);
+            window.addEventListener('keydown', function(e){playerInput.onKeyDown(e);});
+            window.addEventListener('keyup', function(e){playerInput.onKeyUp(e);});
+            gameObjects["player"].addComponent("input",playerInput);
+            */
+            document.body.insertBefore(canvas, document.body.childNodes[0]);
+            game.start(setInterval(function(){game.update();}, 10));
+        }
+
+    </script>
+</body>
+</html>

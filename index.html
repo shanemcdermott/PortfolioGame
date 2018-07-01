@@ -13,8 +13,15 @@
 	<link href="css/main.css" rel="stylesheet" type="text/css">
   <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
   <script>var __adobewebfontsappname__="dreamweaver"</script>
+  
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+   <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap-4.0.0.js"></script>
   <script src="http://use.edgefonts.net/raleway:n1,n3,n6,n5:default.js" type="text/javascript"></script>
   <script src="js/Game.js"></script>
+  
   </head>
   <body>
 	<div class="container body-wrap">
@@ -54,225 +61,55 @@
           <div class="row">
             <div class="col-12">
               <h1 class="text-uppercase greeting">Hello There!</h1>
-				<h2>I'm Shane.</h2>
+				      <h2>I'm Shane.</h2>
               <p>I make games.</p>
-			</div>
-          </div>
-        </div>
-      </div>
-    </section>
-<section>
-
-    <div class="container">
-     
-		<div id ="game-cards" class="card-deck">
-			<div class="card bg-smooth">
-				<img class="card-img-top" src="https://ggj.s3.amazonaws.com/styles/game_sidebar__wide/game/featured_image/intro1_0.png?itok=jcnU_9wn&timestamp=1517167853" alt="Card image">
-			    <div class="card-body text-center">
-					<h4 class="card-title">Lil Necro</h4>
-          <p class="card-text">Created for Global Game Jam 2018</p>
-          <btn class="btn btn-success" onclick="initGame('Lil Necro')">Details</btn>
-				</div>
-			</div>
-			<div class="card bg-smooth">
-				<img class="card-img-top" src="images/MinotaurSplash.png" alt = "Lair of the Minotaur">
-			    <div class="card-body text-center">
-					<h4 class="card-title">Lair of the Minotaur</h4>
-          <p class="card-text">Solve a series of procedurally generated labyrinths!</p>
-          <btn class="btn btn-success" onclick="initGame('Lair of the Minotaur')">Details</btn>
-				</div>
-      </div>
-      <div class="card bg-smooth">
-				<img class="card-img-top" src="images/MinotaurSplash.png" alt = "Lair of the Minotaur">
-			    <div class="card-body text-center">
-					<h4 class="card-title">What Could Have Been</h4>
-          <p class="card-text">September 2016 Unreal Engine 4 Game Jam</p>
-          <btn class="btn btn-success" onclick="initGame('What Could Have Been')">Details</btn>
-				</div>
-			</div>
-			
-    </div>
-    <div class="row" id="canvas-row" style="visibility:collapse">
-          <div class="col-lg-12 text-center">
-            <div class="card">
-              <canvas id="game-canvas" class="card-img-top"></canvas>
-                <div class="card-body text-center bg-smooth text-white">
-                <h4 id="game-info-title" class="card-title">Overview</h4>
-                <p id="game-info-details" class="card-text">Select one of the cards above for more information.</p>
-                <br>
-              </div>
             </div>
           </div>
-        </div>  
-
-    <hr>
-      <div class="row">
-        <div class="col-lg-12 text-center">
-            	<iframe width="720" height="480" src="https://www.youtube-nocookie.com/embed/videoseries?list=PL505MTZn9Kw59bricQZiAOt0CHKxbrmb8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <h4>Here's an overview of some of my work.</h4>
-            <h6>Visit my <a href="/Portfolio/">portfolio</a> for more.</h6>
-          </div>
+        </div>
       </div>
+    </section>
+    
+    <section>
+    
+      <!-- Modal -->
+      <div class="modal fade" id="portfolioModal" tabindex="-1" role="dialog" aria-labelledby="portfolioModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+          <div class="modal-content"></div>
+        </div>
+      </div>
+    </section>
+    <section>
+    <div class="container">
+     
+    <div id ="game-cards" class="card-deck">
+      <!--Card 1 -->
+      <div class="card bg-smooth btn btn-primary" data-toggle="modal" data-target="#portfolioModal" data-whatever="QuaSim.html">
+        <div class="card-header text-center">QuaSim</div>
+				<img class="card-img-top" src="images/MinotaurSplash.png" alt = "Lair of the Minotaur">
+      </div>
+
+      <!--Card 2-->
+      <div class="card bg-smooth btn btn-primary" data-toggle="modal" data-target="#portfolioModal" data-whatever="LilNecro.html">
+        <div class="card-header text-center">Lil Necro</div>
+        <img class="card-img-top" src="https://ggj.s3.amazonaws.com/styles/game_sidebar__wide/game/featured_image/intro1_0.png?itok=jcnU_9wn&timestamp=1517167853" alt="Card image">
+      </div>
+
 
     </div>
     </section>
     <hr>
-    <section>
-      <div class="container">
-        <div class="row">
-          <div class="col-12 text-center">
-            <h1>I'm currently seeking full-time employment.</h1>
-			  <p>I'll be receiving my Bachelor's Degree in Computer Science this August.</p>
-			  <p>I'm looking for something challenging with room for growth.</p>
-            <a class="btn btn-success" href="mailto:admin@shanemcdermott.ninja" role="button">Let's work together!</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <hr>
-    <script>
-
-      var gameDetails = {
-        'Lil Necro': { 
-          description: "Play as a young necromancer who must communicate with her minions using cards enscribed with disease vectors and emotions.",
-          devTime: "48 hours"
-        },
-        'What Could Have Been': { 
-          description: "This was my first game jam experience.",
-          devTime: "48 hours" 
-        }
-      };
-
-
-
-      var game = null;
-
-      function initGame(gameName)
-      {
-
-        document.getElementById('canvas-row').style.visibility = "visible";
-        document.getElementById('game-info-title').textContent = gameName;
-        document.getElementById("game-info-details").textContent = gameDetails[gameName].description;
-        startGame();
-      }
-
-    function startGame() 
-    {
-      /*
-        var canvas = document.createElement("canvas");
-        canvas.width = canvasWidth;
-        canvas.height = canvasHeight;
-      */
-
-        var canvas = document.getElementById("game-canvas");
-        var canvasWidth = canvas.width;
-        var canvasHeight = canvas.height;
-        var worldWidth = 360;
-        var worldHeight = 240;
-
-
-        var gameWorld = new GameWorld(worldWidth, worldHeight);
-        //gameWorld.transform.scale = new Point(canvasWidth/worldWidth, canvasHeight/worldHeight);
-        //gameWorld.transform.position = new Point(worldWidth / 2, worldHeight / 2);
-        let playerStart = new Point(worldWidth / 2, worldHeight / 2);
-        var player = new Entity("player", playerStart);
-        
-        var shane = new Entity("shane", new Point(0,0));
-        shane.transform.scale = new Point(5,5);
-
-        let gameObjects = {
-            "baseGround" : new Entity("tile"),
-            "player": player,
-            "shane": shane
-        };
-        
-        gameWorld.gameObjects = gameObjects;
-        //x,y, type, width, height
-
-
-        gameWorld.registerComponent(new SpriteComponent("sprite", player,
-            32,32,                    
-            [   
-                "sprites/2016/spr_player_walk_south_0.png",
-                "sprites/2016/spr_player_walk_south_1.png",
-                "sprites/2016/spr_player_walk_south_2.png",
-                "sprites/2016/spr_player_walk_south_3.png"
-            ], 
-            0.25, true )
-        );
-        gameWorld.registerComponent(new MovementComponent("movement", player, 4));
-        gameWorld.registerComponent(new SpriteComponent("ground", gameObjects["baseGround"],
-            128,128,                    
-            [   "sprites/2018/GroundTile1.png",
-                "sprites/2018/GroundTile2.png",
-                "sprites/2018/GroundTile3.png",
-                "sprites/2018/GroundTile4.png",
-                "sprites/2018/GroundTile5.png"], 
-            0.25, true )
-        );
-
-        let sheetSize = new Point(1152, 768);
-        let tileSize = new Point(192, 192);
-
-        var spriteObj = new Image();
-        spriteObj.src = "sprites/lpc/body/human_male.png";
-        //sheetSource, sheetSize, tileSize
-        gameWorld.registerComponent(new SpriteSheet("shanePawn", shane, spriteObj, sheetSize, tileSize, 1.0, 6));
-        var pantsObj = new Image();
-        pantsObj.src = "sprites/lpc/legs/pants_turq.png";
-        //sheetSource, sheetSize, tileSize
-        gameWorld.registerComponent(new SpriteSheet("shanePants", shane, pantsObj, sheetSize, tileSize, 1.0, 6));
-        
-        var shirtImg = new Image();
-        shirtImg.src = "sprites/lpc/torso/shirt_white.png";
-        gameWorld.registerComponent(new SpriteSheet("shaneShirt", shane, shirtImg, sheetSize, tileSize, 1.0, 6));
-
-        var hairImg = new Image();
-        hairImg.src = "sprites/lpc/hair/def_blonde.png";
-        gameWorld.registerComponent(new SpriteSheet("shaneHair", shane, hairImg, sheetSize, tileSize, 1.0, 6));
-
-        var swordImg = new Image();
-        swordImg.src = "sprites/lpc/weapons/longsword.png";
-        gameWorld.registerComponent(new SpriteSheet("shaneSword", shane, swordImg, sheetSize, tileSize, 1.0, 6));
-
-        //var swordImg = new Image();
-        //swordImg.src = "sprites/lpc/sword_slash.png";
-        //name, owner, sheetObj, sheetSize, tileSize, frameLength = 0.5, startIndex = 0
-        //var swordObj = new SpriteSheet("spriteSword", shane, swordImg, new Point(1152, 768), new Point(192,192), 1.0, 6);
-        //swordObj.zOrder = 10;
-        //swordObj.transform.scale = new Point(2,2);
-        //gameWorld.registerComponent(swordObj);
-        
-        //gameWorld.sortComponents();
-
-
-        game = new GameDriver(canvas, gameWorld);
-        game.setupPlayerInput(player);
-        /*
-        playerInput = new PlayerInputComponent(gameObjects["player"]);
-        window.addEventListener('keydown', function(e){playerInput.onKeyDown(e);});
-        window.addEventListener('keyup', function(e){playerInput.onKeyUp(e);});
-        gameObjects["player"].addComponent("input",playerInput);
-        */
-        //document.body.insertBefore(canvas, document.body.childNodes[0]);
-        game.start(setInterval(function(){game.update();}, 10));
-    }
-
-    </script>
 </div>
-    <footer class="text-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <p>Copyright © Shane McDermott. All rights reserved.</p>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap-4.0.0.js"></script>
+
+    <script>
+      $('#portfolioModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var gameData = button.data('whatever') // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        //modal.find('.modal-title').text(gameName)
+        modal.find('.modal-content').load(gameData);
+      });
+    </script>
   </body>
 </html>

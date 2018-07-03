@@ -62,3 +62,10 @@
  .carousel-inner > .item > img {
 	 margin: 0 auto;
  }
+
+ .card {
+    overflow: hidden;
+}
+.card-title {
+    word-wrap: break-word;
+}

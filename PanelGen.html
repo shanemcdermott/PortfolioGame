@@ -1,0 +1,195 @@
+<!-- Utility for generating project panels-->
+<html>
+        <head>
+                <meta charset="utf-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <title>Panel Gen</title>
+                <!-- Bootstrap -->
+                <link href="css/bootstrap-4.0.0.css" rel="stylesheet">
+                  
+                      <!-- Icons -->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                <link href="css/main.css" rel="stylesheet" type="text/css">
+              <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
+              <script>var __adobewebfontsappname__="dreamweaver"</script>
+              
+              <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+              <script src="js/jquery-3.2.1.min.js"></script>
+              <!-- Include all compiled plugins (below), or include individual files as needed -->
+               <script src="js/popper.min.js"></script>
+              <script src="js/bootstrap-4.0.0.js"></script>
+              <script src="http://use.edgefonts.net/raleway:n1,n3,n6,n5:default.js" type="text/javascript"></script>  
+              </head>
+              <body>
+                <div class="container body-wrap">
+                    <nav class="navbar navbar-expand-lg " id="my-nav">
+                        <div class="navbar-header">
+                              <a class="navbar-brand" href="/">Shane</a>
+                              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                  <span class="navbar-toggler-icon"></span>
+                              </button>
+                        </div>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <div class="navbar-nav navbar-left">
+                        <ul class="nav nav-tabs">
+                              <li>
+                                <a class="nav-link" href="/AboutMe/">About Me</a>
+                              </li>
+                               <li>
+                                <a class="nav-link" href="/Portfolio/">Portfolio</a>
+                            </li>
+                          </ul>
+                      </div>
+                      
+                    <ul class="navbar-nav ml-auto">
+                        <li><a href="https://www.linkedin.com/in/shane-mcdermott-gamedev"><i class="fa fa-linkedin-square icon" alt="LinkedIn"></i></a></li>
+                        <li><a href="https://www.github.com/shanemcdermott"><i class="fa fa-github icon" alt="GitHub"></i></a></li>
+                        <li><a href="https://www.twitter.com/Shane_McDerm"><i class="fa fa-twitter-square icon" alt="Twitter"></i></a></li>
+                        <li><a href="https://www.facebook.com/shane.r.mcdermott"><i class="fa fa-facebook-square icon" alt="Facebook"></i></a></li>
+                        <li><a href="mailto:admin@shanemcdermott.ninja"><i class="fa fa-envelope-square icon" alt="E-Mail"></i></a></li>
+                    </ul>
+                  </div>
+                <hr>
+</nav>
+
+<section>
+<div class="container-fluid">
+<form>
+    <div class="form-group">
+        <label for="preview-cnt">Cards in Preview</label>
+        <input type="number" class="form-control" id="preview-cnt" value="4">
+    </div>
+    <div class="form-group">
+        <label for="inputName">Project Name</label>
+        <input type="text" class="form-control" id="inputName" placeholder="Enter name">
+        <label for="inputTag">Shortcut Tag</label>
+        <input type="text" class="form-control" id="inputTag" placeholder="tag">
+        <label for="inputImg">Image Source</label>
+        <input type="text" class="form-control" id="inputImg" placeholder="Image Location" value="images/400x400.gif">
+    </div>
+</form>
+
+<button id="gen-btn" class="btn btn-primary">Generate Overlay</button>
+<button id="gen-h-btn" class="btn btn-primary">Generate With Header</button>
+
+    <!-- Collapse Panel -->
+    <div class="collapse" id="out-pan">
+        <h5>Code:</h5>
+        <div class="container" id="out-con"></div>
+        <br>
+        <h5>Preview:</h5>
+        <div class="container" id="out-prev">
+            <div id ="game-cards" class="card-deck">
+                <div id="preview-btn" class="card bg-smooth btn btn-primary port-btn" role="button">
+                    <img id="preview-img" class="card-img" src="images/400x400.gif" alt="Card image">
+                    <div class="card-img-overlay">
+                            <div id="preview-title" class="preview-title card-title text-center">Seraph2D</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+    <script>
+        var preCode = "<pre><code>";
+        var openDiv = "&lt;div ";
+        var closeDiv = "&lt;/div&gt;\n";
+
+        var btnTemplate = [
+            openDiv + "id=\"", //0
+            "-btn\" class=\"card bg-smooth btn btn-primary port-btn\" role=\"button\"&gt;\n",   //1
+            "&lt;img class=\"card-img\" src=\"",                //2
+            "\" alt=\"Card image\"&gt;\n" +
+                openDiv+"class=\"card-img-overlay\"&gt;\n",                                         //3
+            openDiv+"class=\"card-title text-center\"&gt;",                                 //4
+            closeDiv+closeDiv+closeDiv,                                                     //5
+            "</code></pre>" //6
+        ];
+
+        var hBtnTemplate = [
+            openDiv + "id=\"", //0
+            "-btn\" class=\"card bg-smooth btn btn-primary port-btn\" role=\"button\"&gt;\n",   //1
+            openDiv + "class=\"card-header\"&gt;\n\t"+
+            "&lt;h5 class=\"card-title\"&gt;",  //2
+            "&lt;/h5&gt;\n" + closeDiv,                    //3
+            "&lt;img class=\"card-img-bottom\" src=\"",                //4
+            "\" alt=\"Card image\"&gt;\n" + closeDiv + "</code></pre>" //5
+        ];
+
+        $(document).ready(function(){
+            $("#gen-btn").click(function(){
+
+                var btnCode =
+                    preCode+
+                    "&lt;!--"+$("#inputName").val()+" Card-->\n"+
+                    btnTemplate[0]+
+                    $("#inputTag").val()+
+                    btnTemplate[1]+
+                    btnTemplate[2]+
+                    $("#inputImg").val()+
+                    btnTemplate[3]+
+                    btnTemplate[4]+
+                    $("#inputName").val()+
+                    btnTemplate[5]+
+                    btnTemplate[6];
+                
+                $("#out-con").html(btnCode);
+                $(".preview-title").text($("#inputName").val());
+                document.getElementById("preview-img").src=$("#inputImg").val();
+
+                applyPreviewSettings();
+                $("#out-pan").collapse('show');
+            });
+
+             $("#gen-h-btn").click(function(){
+
+                var btnCode =
+                    preCode+
+                    "&lt;!--"+$("#inputName").val()+" Card-->\n"+
+                    hBtnTemplate[0]+
+                    $("#inputTag").val()+
+                    hBtnTemplate[1]+
+                    hBtnTemplate[2]+
+                    $("#inputName").val()+
+                    hBtnTemplate[3]+
+                    hBtnTemplate[4]+
+                    $("#inputImg").val()+
+                    hBtnTemplate[5];
+
+                $("#out-con").html(btnCode);
+                $(".preview-title").text($("#inputName").val());
+                document.getElementById("preview-img").src=$("#inputImg").val();
+
+                applyPreviewSettings();
+                $("#out-pan").collapse('show');
+                });
+
+            $("#preview-cnt").change(function(){
+                applyPreviewSettings();
+            });
+
+            function applyPreviewSettings()
+            {
+                var previewCode = document.getElementById("preview-btn");
+                var previewDeck = document.getElementById("game-cards");
+
+                for(let i = previewDeck.childElementCount; i < $("#preview-cnt").val(); i++)
+                {
+                    var cln = previewCode.cloneNode(true);
+                    previewDeck.appendChild(cln);
+                }
+
+                while(previewDeck.childElementCount > $("#preview-cnt").val())
+                {
+                    previewDeck.removeChild(previewDeck.childNodes[0]);
+                }
+            }
+
+
+        });
+    </script>
+
+</html>

@@ -52,3 +52,13 @@
 	font-weight: 500;
 	font-variant: normal;
 }
+
+.carousel {
+	max-height: your size;
+	max-width: your width;
+	overflow: hidden;
+ }
+ 
+ .carousel-inner > .item > img {
+	 margin: 0 auto;
+ }

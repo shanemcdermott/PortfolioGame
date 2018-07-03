@@ -19,9 +19,7 @@
   <!-- Include all compiled plugins (below), or include individual files as needed -->
    <script src="js/popper.min.js"></script>
   <script src="js/bootstrap-4.0.0.js"></script>
-  <script src="http://use.edgefonts.net/raleway:n1,n3,n6,n5:default.js" type="text/javascript"></script>
-  <script src="js/Game.js"></script>
-  
+  <script src="http://use.edgefonts.net/raleway:n1,n3,n6,n5:default.js" type="text/javascript"></script>  
   </head>
   <body>
 	<div class="container body-wrap">
@@ -70,46 +68,79 @@
     </section>
     
     <section>
-    
-      <!-- Modal -->
-      <div class="modal fade" id="portfolioModal" tabindex="-1" role="dialog" aria-labelledby="portfolioModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-          <div class="modal-content"></div>
-        </div>
-      </div>
-    </section>
-    <section>
     <div class="container">
      
     <div id ="game-cards" class="card-deck">
-      <!--Card 1 -->
-      <div class="card bg-smooth btn btn-primary" data-toggle="modal" data-target="#portfolioModal" data-whatever="QuaSim.html">
+      <!--QuaSim Card -->
+      <div id="qua-btn" class="card bg-smooth btn btn-primary port-btn" role="button">
         <div class="card-header text-center">QuaSim</div>
-				<img class="card-img-top" src="images/MinotaurSplash.png" alt = "Lair of the Minotaur">
+				<img class="card-img-top" src="img/Portfolio/QuaSim/Lesson1_0.jpg" alt = "QuaSim">
       </div>
 
-      <!--Card 2-->
-      <div class="card bg-smooth btn btn-primary" data-toggle="modal" data-target="#portfolioModal" data-whatever="LilNecro.html">
+      <!--Lil Necro Card-->
+      <div id="necro-btn" class="card bg-smooth btn btn-primary port-btn" role="button">
         <div class="card-header text-center">Lil Necro</div>
-        <img class="card-img-top" src="https://ggj.s3.amazonaws.com/styles/game_sidebar__wide/game/featured_image/intro1_0.png?itok=jcnU_9wn&timestamp=1517167853" alt="Card image">
+        <img class="card-img-top" src="https://ggj.s3.amazonaws.com/styles/game_sidebar__wide/game/featured_image/intro1_0.png" alt="Card image">
       </div>
 
+      <!--PCG Card-->
+      <div id="pcg-btn" class="card bg-smooth btn btn-primary port-btn" role="button">
+        <div class="card-header text-center">Procedural City Generation</div>
+        <img class="card-img-top" src="https://ggj.s3.amazonaws.com/styles/game_sidebar__wide/game/featured_image/intro1_0.png" alt="Card image">
+      </div>
+
+      <!-- Seraph2D Card-->
+      <div id="seraph2d-btn" class="card bg-smooth btn btn-primary port-btn" role="button">
+        <div class="card-header text-center">Seraph2D</div>
+        <img class="card-img-top" src="https://ggj.s3.amazonaws.com/styles/game_sidebar__wide/game/featured_image/intro1_0.png" alt="Card image">
+      </div>
 
     </div>
     </section>
     <hr>
+    <section>
+    
+    <!-- Collapse Panel -->
+    <div class="collapse" id="port-pan">
+        <div id="port-div">Something went wrong!</div>
+    </div>
+  </section>
+  
 </div>
 
     <script>
-      $('#portfolioModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget); // Button that triggered the modal
-        var gameData = button.data('whatever') // Extract info from data-* attributes
-        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-        var modal = $(this)
-        //modal.find('.modal-title').text(gameName)
-        modal.find('.modal-content').load(gameData);
-      });
+        $(document).ready(function(){
+          
+          var portSources = {
+            "seraph2d-btn": "seraph2d.html",
+            "pcg-btn" : "pcg.html",
+            "necro-btn": "LilNecro.html",
+            "qua-btn": "QuaSim.html"
+          }
+          var portContent = null;
+          
+          $(".port-btn").click(function(){
+            
+            if(portContent==this.id)
+            {
+              $("#port-pan").collapse('hide');
+              portContent = null;
+            }
+            else
+            {
+              portContent = this.id;
+              $("#port-div").load(portSources[this.id], function(responseTxt, statusTxt, xhr){
+                if(statusTxt == "success")
+                {
+                    $("#port-pan").collapse('show');
+                }
+              });
+
+            }
+          })
+
+        });
+     
     </script>
   </body>
 </html>

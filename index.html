@@ -53,53 +53,11 @@
 	<hr>
     </nav>
 
-    <section>
-      <div class="jumbotron text-center mt-2" id="greeting-panel">
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <h1 class="text-uppercase greeting">Hello There!</h1>
-				      <h2>I'm Shane.</h2>
-              <p>I make games.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+    <section id="greeting-sec">
     </section>
     
-    <section>
-    <div class="container">
-     
-    <div id ="game-cards" class="card-deck">
-        <!--QuaSim Card-->
-        <div id="qua-btn" class="card bg-smooth btn btn-primary port-btn" role="button">
-        <div class="card-header">
-          <h5 class="card-title">QuaSim</h5>
-        </div>
-        <img class="card-img-bottom" src="img/Portfolio/QuaSim/Lesson1_0.jpg" alt="Card image">
-        </div>
-
-      <!--Lil Necro Card-->
-      <div id="necro-btn" class="card bg-smooth btn btn-primary port-btn" role="button">
-        <div class="card-header text-center">Lil Necro</div>
-        <img class="card-img-top" src="https://ggj.s3.amazonaws.com/styles/game_sidebar__wide/game/featured_image/intro1_0.png" alt="Card image">
-      </div>
-
-      <!--PCG Card-->
-      <div id="pcg-btn" class="card bg-smooth btn btn-primary port-btn" role="button">
-        <div class="card-header text-center">Procedural City Generation</div>
-        <img class="card-img-top" src="https://ggj.s3.amazonaws.com/styles/game_sidebar__wide/game/featured_image/intro1_0.png" alt="Card image">
-      </div>
-
-      <!--Seraph2D Card-->
-      <div id="seraph-2d-btn" class="card bg-smooth btn btn-primary port-btn" role="button">
-        <img class="card-img" src="images/400x400.gif" alt="Card image">
-        <div class="card-img-overlay">
-          <div class="card-title text-center">Seraph2D</div>
-        </div>
-      </div>
-
-    </div>
+    <section id="game-sec">
+    
     </section>
     <hr>
     <section>
@@ -115,6 +73,22 @@
     <script>
         $(document).ready(function(){
           
+          //Load Greeting Panel
+          $("#greeting-sec").load("html/greeting-panel.html", function(responseTxt, statusTxt, xhr){
+            if ( statusTxt == "error" ) {
+              var msg = "Sorry but there was an error: ";
+              console.log( msg + xhr.status + " " + xhr.statusText );
+            }
+          });
+
+          //load Game Cards
+          $("#game-sec").load("html/game-cards.html", function(responseTxt, statusTxt, xhr){
+            if ( statusTxt == "error" ) {
+              var msg = "Sorry but there was an error: ";
+              console.log( msg + xhr.status + " " + xhr.statusText );
+            }
+          });
+
           var portSources = {
             "seraph2d-btn": "seraph2d.html",
             "pcg-btn" : "pcg.html",

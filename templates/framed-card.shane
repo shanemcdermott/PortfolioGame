@@ -1,0 +1,4 @@
+<div id="GAMETAG-btn" class="card bg-smooth btn btn-primary port-btn" role="button">
+    <div id="GAMETAG-hdr" class="card-header text-center">GAMENAME</div>
+    <img id="GAMETAG-img" class="card-img-top" src="GAMEIMGSRC" alt="GAMENAME image"></img>
+</div>

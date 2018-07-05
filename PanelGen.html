@@ -81,11 +81,10 @@
         <h5>Preview:</h5>
         <div class="container" id="out-prev">
             <div id ="game-cards" class="card-deck">
-                <div id="preview-btn" class="card bg-smooth btn btn-primary port-btn" role="button">
-                    <img id="preview-img" class="card-img" src="images/400x400.gif" alt="Card image">
-                    <div class="card-img-overlay">
-                            <div id="preview-title" class="preview-title card-title text-center">Seraph2D</div>
-                    </div>
+                <!--Preview button-->
+                <div id="GAMETAG-btn" class="card bg-smooth btn btn-primary port-btn" role="button">
+                    <div id="GAMETAG-hdr" class="card-header text-center">GAMENAME</div>
+                    <img id="GAMETAG-img" class="card-img-top" src="images/400x400.gif" alt="GAMENAME image"></img>
                 </div>
             </div>
         </div>
@@ -120,6 +119,54 @@
         ];
 
         $(document).ready(function(){
+
+            var previewBtn = document.getElementById("GAMETAG-btn");
+            
+            function buttonTemplate (btnName, btnTag, btnImgSrc)
+            {
+                this.name = btnName;
+                this.tag = btnTag;
+                this.imgSrc = btnImgSrc;
+
+                this.asPreview = function(previewCard)
+                {
+                    previewCard.id = this.tag+"-btn";
+                    previewCard.childNodes[1].id= this.tag+"-hdr";
+                    previewCard.childNodes[1].innerText = this.name;
+                    previewCard.childNodes[2].id= this.tag+"-img";  
+                    previewCard.childNodes[2].src= this.imgSrc;  
+                    previewCard.childNodes[2].alt= this.name + " Image";
+                    return previewCard;
+                };
+
+                this.toCode = function()
+                {
+                    var hBtnTemplate = [
+                            openDiv + "id=\"", //0
+                            "-btn\" class=\"card bg-smooth btn btn-primary port-btn\" role=\"button\"&gt;\n",   //1
+                            openDiv + "class=\"card-header\"&gt;\n\t"+
+                            "&lt;h5 class=\"card-title\"&gt;",  //2
+                            "&lt;/h5&gt;\n" + closeDiv,                    //3
+                            "&lt;img class=\"card-img-bottom\" src=\"",                //4
+                            "\" alt=\"Card image\"&gt;\n" + closeDiv + "</code></pre>" //5
+                    ];
+
+                    var btnCode =
+                            preCode+
+                            "&lt;!--"+this.name+" Card-->\n"+
+                            hBtnTemplate[0]+
+                            this.tag+
+                            hBtnTemplate[1]+
+                            hBtnTemplate[2]+
+                            this.name+
+                            hBtnTemplate[3]+
+                            hBtnTemplate[4]+
+                            this.btnImgSrc+
+                            hBtnTemplate[5];
+                    return btnCode;
+                }
+            };
+
             $("#gen-btn").click(function(){
 
                 var btnCode =
@@ -145,25 +192,16 @@
             });
 
              $("#gen-h-btn").click(function(){
+                 
+                var newBtn = new buttonTemplate($("#inputName").val(), $("#inputTag").val(), $("#inputImg").val());
 
-                var btnCode =
-                    preCode+
-                    "&lt;!--"+$("#inputName").val()+" Card-->\n"+
-                    hBtnTemplate[0]+
-                    $("#inputTag").val()+
-                    hBtnTemplate[1]+
-                    hBtnTemplate[2]+
-                    $("#inputName").val()+
-                    hBtnTemplate[3]+
-                    hBtnTemplate[4]+
-                    $("#inputImg").val()+
-                    hBtnTemplate[5];
+                $("#out-con").html(newBtn.toCode());
 
-                $("#out-con").html(btnCode);
-                $(".preview-title").text($("#inputName").val());
-                document.getElementById("preview-img").src=$("#inputImg").val();
+                var previewCard = previewBtn.cloneNode(true);
+                previewCard = newBtn.asPreview(previewCard);
 
-                applyPreviewSettings();
+                document.getElementById("game-cards").appendChild(previewCard);
+
                 $("#out-pan").collapse('show');
                 });
 
@@ -171,10 +209,20 @@
                 applyPreviewSettings();
             });
 
+            function updatePreviewCard(previewCard, previewTag, previewName, previewSrc)
+            {
+                previewCard.id = previewTag+"-btn";
+                previewCard.childNodes[1].id= previewTag+"-hdr";
+                previewCard.childNodes[1].innerText = previewName;
+                previewCard.childNodes[2].id= previewTag+"-img";  
+                previewCard.childNodes[2].src= previewSrc;  
+                previewCard.childNodes[2].alt= previewName + " Image";                
+            }
+
             function applyPreviewSettings()
             {
-                var previewCode = document.getElementById("preview-btn");
                 var previewDeck = document.getElementById("game-cards");
+                var previewCode = previewDeck.lastChild;
 
                 for(let i = previewDeck.childElementCount; i < $("#preview-cnt").val(); i++)
                 {

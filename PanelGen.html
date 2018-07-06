@@ -14,6 +14,7 @@
               <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
               <script>var __adobewebfontsappname__="dreamweaver"</script>
               
+              <script src="js/GamePanel.js"></script>
               <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
               <script src="js/jquery-3.2.1.min.js"></script>
               <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -81,11 +82,7 @@
         <h5>Preview:</h5>
         <div class="container" id="out-prev">
             <div id ="game-cards" class="card-deck">
-                <!--Preview button-->
-                <div id="GAMETAG-btn" class="card bg-smooth btn btn-primary port-btn" role="button">
-                    <div id="GAMETAG-hdr" class="card-header text-center">GAMENAME</div>
-                    <img id="GAMETAG-img" class="card-img-top" src="images/400x400.gif" alt="GAMENAME image"></img>
-                </div>
+
             </div>
         </div>
     </div>
@@ -93,9 +90,9 @@
 </section>
 
     <script>
-        var preCode = "<pre><code>";
-        var openDiv = "&lt;div ";
-        var closeDiv = "&lt;/div&gt;\n";
+        const preCode = "<pre><code>";
+        const openDiv = "&lt;div ";
+        const closeDiv = "&lt;/div&gt;\n";
 
         var btnTemplate = [
             openDiv + "id=\"", //0
@@ -148,7 +145,7 @@
                             "&lt;h5 class=\"card-title\"&gt;",  //2
                             "&lt;/h5&gt;\n" + closeDiv,                    //3
                             "&lt;img class=\"card-img-bottom\" src=\"",                //4
-                            "\" alt=\"Card image\"&gt;\n" + closeDiv + "</code></pre>" //5
+                            "\" alt=\"Card image\"&gt;</img&gt;\n" + closeDiv + "</code></pre>" //5
                     ];
 
                     var btnCode =
@@ -193,14 +190,11 @@
 
              $("#gen-h-btn").click(function(){
                  
-                var newBtn = new buttonTemplate($("#inputName").val(), $("#inputTag").val(), $("#inputImg").val());
+                var newBtn = new GameCard($("#inputName").val(), $("#inputTag").val(), $("#inputImg").val());
 
-                $("#out-con").html(newBtn.toCode());
+                //$("#out-con").html(newBtn.toCode());
 
-                var previewCard = previewBtn.cloneNode(true);
-                previewCard = newBtn.asPreview(previewCard);
-
-                document.getElementById("game-cards").appendChild(previewCard);
+                document.getElementById("game-cards").appendChild(newBtn.html);
 
                 $("#out-pan").collapse('show');
                 });

@@ -19,6 +19,7 @@
   <!-- Include all compiled plugins (below), or include individual files as needed -->
    <script src="js/popper.min.js"></script>
   <script src="js/bootstrap-4.0.0.js"></script>
+  <script src="js/GamePanel.js"></script>
   <script src="http://use.edgefonts.net/raleway:n1,n3,n6,n5:default.js" type="text/javascript"></script>  
   </head>
   <body>
@@ -57,7 +58,11 @@
     </section>
     
     <section id="game-sec">
-    
+      <div class="container">
+        <div id ="game-cards" class="card-deck">
+
+        </div>
+      </div>
     </section>
     <hr>
     <section>
@@ -71,6 +76,9 @@
 </div>
 
     <script>
+      
+      var gameCards = new Map();
+
         $(document).ready(function(){
           
           //Load Greeting Panel
@@ -81,41 +89,51 @@
             }
           });
 
-          //load Game Cards
-          $("#game-sec").load("html/game-cards.html", function(responseTxt, statusTxt, xhr){
-            if ( statusTxt == "error" ) {
-              var msg = "Sorry but there was an error: ";
-              console.log( msg + xhr.status + " " + xhr.statusText );
-            }
-          });
-
-          var portSources = {
-            "seraph2d-btn": "seraph2d.html",
-            "pcg-btn" : "pcg.html",
-            "necro-btn": "LilNecro.html",
-            "qua-btn": "QuaSim.html"
-          }
-          var portContent = null;
-          
-          $(".port-btn").click(function(){
-            
-            if(portContent==this.id)
-            {
-              $("#port-pan").collapse('hide');
-              portContent = null;
-            }
-            else
-            {
-              portContent = this.id;
-              $("#port-div").load(portSources[this.id], function(responseTxt, statusTxt, xhr){
-                if(statusTxt == "success")
-                {
-                    $("#port-pan").collapse('show');
-                }
+          function addGameData(data)
+          {
+            let sections = [];
+              $.each(data.sections, function(i, section){
+                sections[i] = new PanelSection(section.name, section.id, section.className, section.active, section.contents);
               });
 
-            }
-          })
+              gameCards[data.tag+"-btn"] = new GameInfo(data.name, data.tag, data.images, sections);
+              $("#game-cards").append(gameCards[data.tag+"-btn"].card.html);
+          }
+
+          var portContent;
+
+          $.when(
+            $.getJSON("json/QuaSim.json", function(data){
+              addGameData(data);
+            }),
+            $.getJSON("json/LilNecro.json",function(data){
+              addGameData(data);
+            }),
+            $.getJSON("json/Seraph2D.json", function(data){
+              addGameData(data);
+            }),
+            $.getJSON("json/Capstone.json", function(data){
+              addGameData(data);
+            })  
+          ).then(function(){
+
+            $(".port-btn").click(function(){
+              
+              if(portContent==this.id)
+              {
+                $("#port-pan").collapse('hide');
+                portContent = null;
+              }
+              else
+              {
+                portContent = this.id;
+
+                $("#port-div").html(gameCards[portContent].panel);
+                $("#port-pan").collapse('show');
+                $(".carousel").carousel();
+              }
+            });
+          });
 
         });
      

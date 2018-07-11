@@ -1,0 +1,33 @@
+{
+    "name": "Lair of the Minotaur",
+    "tag": "lair",
+    "images": [
+            "images/MinotaurSplash.png", 
+            "images/MinotaurSplash.png"],
+    "sections": [
+        {
+            "name": "Overview",
+            "id": "game-overview",
+            "className": "tab-pane",
+            "active": true,
+            "type": "p",
+            "contents": "<i>Lair of the Minotaur</i> is an educational game-based simulator that provides students with practical experience in the principles of Quantum Cryptography. Funded by grants from the NSF and NSA, <i>QuaSim</i> has resulted in several publications since its conception in 2016."
+        },
+        {
+            "name": "Features",
+            "id":"game-features",
+            "className":"tab-pane",
+            "active":false,
+            "type":"ul",
+            "contents": "<ul class=\"list-group list-group-flush\"><li class=\"list-group-item\">4 Lesson Modules</li><li class=\"list-group-item\">Adaptive Challenges and Hints</li><li class=\"list-group-item\">Virtual Assistant/Narrator</li><li class=\"list-group-item\">Cooperative and Competitive Play Modes</li></ul>"
+        },
+        {
+            "name": "Responsibilities",
+            "id": "game-responsibilities",
+            "className": "tab-pane",
+            "active": false,
+            "type":"p",
+            "contents": "As the lead developer for <i>QuaSim</i>, I was responsible for the design and implementation of the game architecture of our lesson system and its integration with Unreal Engine 4. I was also responsible for the implementation of any lesson-specific requirements."
+        }
+    ]
+}

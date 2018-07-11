@@ -46,12 +46,13 @@ class GameCard
 
 class PanelSection
 {
-    constructor(name,id, className, active=false, contents="Who knows?")
+    constructor(name,id, className, active=false, type="div", contents="Who knows?")
     {
         this.name = name;
         this.id = id;
         this.className = className;
         this.active=active;
+        this.type=type;
         this.contents = contents;
     }
 
@@ -73,7 +74,7 @@ class PanelSection
     {
         let pane = document.createElement("div");
             pane.id=this.id;
-            pane.className= this.active? this.className+ " active" : this.className;
+            pane.className= this.active? "tab-pane"+ " active" : "tab-pane";
             pane.innerHTML=this.contents;
         return pane;
     }

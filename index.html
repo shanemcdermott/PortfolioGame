@@ -59,6 +59,7 @@
     
     <section id="game-sec">
       <div class="container">
+        <div class="row">
         <div id ="game-cards" class="card-deck">
 
         </div>
@@ -93,7 +94,7 @@
           {
             let sections = [];
               $.each(data.sections, function(i, section){
-                sections[i] = new PanelSection(section.name, section.id, section.className, section.active, section.contents);
+                sections[i] = new PanelSection(section.name, section.id, section.className, section.active, section.type, section.contents);
               });
 
               gameCards[data.tag+"-btn"] = new GameInfo(data.name, data.tag, data.images, sections);
@@ -113,6 +114,9 @@
               addGameData(data);
             }),
             $.getJSON("json/Capstone.json", function(data){
+              addGameData(data);
+            }),
+            $.getJSON("json/Minotaur.json", function(data){
               addGameData(data);
             })  
           ).then(function(){

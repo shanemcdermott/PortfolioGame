@@ -59,26 +59,75 @@
     
     <section id="game-sec">
       <div class="container">
-        <div class="row">
-        <div id ="game-cards" class="card-deck">
-
+        <div class='hr'>
+          <span class='hr-title'>2018</span>
         </div>
+        
+        <div class="row">
+          <div id ="game-cards-2018" class="card-deck">
+
+          </div>
+        </div>
+    
+        <!-- Collapse Panel 2018 -->
+        <div class="collapse port-pan" id="port-pan-2018">
+            <div class="port-div" id="port-div-2018">Something went wrong!</div>
+        </div>
+
+        <div class='hr'>
+          <span class='hr-title'>2017</span>
+        </div>
+
+        <div class="row">
+          <div id ="game-cards-2017" class="card-deck">
+
+          </div>
+        </div>
+
+        <!-- Collapse Panel 2017 -->
+        <div class="collapse port-pan" id="port-pan-2017">
+            <div class="port-div" id="port-div-2017">Something went wrong!</div>
+        </div>
+
+        <div class='hr'>
+          <span class='hr-title'>2016</span>
+        </div>
+
+        <div class="row">
+          <div id ="game-cards-2016" class="card-deck">
+
+          </div>
+        </div>
+
+        <!-- Collapse Panel 2016 -->
+        <div class="collapse port-pan" id="port-pan-2016">
+            <div class="port-div" id="port-div-2016">Something went wrong!</div>
+        </div>
+
+        <div class='hr'>
+          <span class='hr-title'>Game Jams</span>
+        </div>
+
+        <div class="row">
+          <div id ="game-cards-jams" class="card-deck"></div>
+        </div>
+
+        <!-- Collapse Panel Jams -->
+        <div class="collapse port-pan" id="port-pan-jams">
+            <div class="port-div" id="port-div-jams">Something went wrong!</div>
+        </div>
+
       </div>
     </section>
-    <hr>
-    <section>
-    
-    <!-- Collapse Panel -->
-    <div class="collapse" id="port-pan">
-        <div id="port-div">Something went wrong!</div>
-    </div>
-  </section>
+  
+
   
 </div>
 
     <script>
       
       var gameCards = new Map();
+      var contentYear;
 
         $(document).ready(function(){
           
@@ -90,50 +139,91 @@
             }
           });
 
-          function addGameData(data)
+          function addGameData(data, cardSection="#game-cards-2018")
           {
             let sections = [];
-              $.each(data.sections, function(i, section){
-                sections[i] = new PanelSection(section.name, section.id, section.className, section.active, section.type, section.contents);
-              });
+            $.each(data.sections, function(i, section){
+              sections[i] = new PanelSection(section.name, section.id, section.className, section.active, section.type, section.contents);
+            });
 
-              gameCards[data.tag+"-btn"] = new GameInfo(data.name, data.tag, data.images, sections);
-              $("#game-cards").append(gameCards[data.tag+"-btn"].card.html);
+            let gameBtn = new GameInfo(data.name, data.tag, data.year, data.images, sections);
+            let cardHtml = gameBtn.card.html;
+            
+            gameCards[data.tag+"-btn"] = gameBtn;
+            $(cardSection).append(cardHtml);
           }
 
-          var portContent;
+          var portContentId;
 
           $.when(
-            $.getJSON("json/QuaSim.json", function(data){
-              addGameData(data);
+            $.getJSON("json/2018/QuaSim.json", function(data){
+              addGameData(data, "#game-cards-2018");
             }),
-            $.getJSON("json/LilNecro.json",function(data){
-              addGameData(data);
+            $.getJSON("json/2018/LilNecro.json",function(data){
+              addGameData(data, "#game-cards-2018");
             }),
-            $.getJSON("json/Seraph2D.json", function(data){
-              addGameData(data);
+            $.getJSON("json/2018/Seraph2D.json", function(data){
+              addGameData(data, "#game-cards-2018");
             }),
-            $.getJSON("json/Capstone.json", function(data){
-              addGameData(data);
+            $.getJSON("json/2018/Capstone.json", function(data){
+              addGameData(data, "#game-cards-2018");
             }),
-            $.getJSON("json/Minotaur.json", function(data){
-              addGameData(data);
-            })  
+            $.getJSON("json/2017/GameAI.json", function(data){
+              addGameData(data, "#game-cards-2017");
+            }),
+            $.getJSON("json/2017/NodeUE.json", function(data){
+              addGameData(data, "#game-cards-2017");
+            }),
+            $.getJSON("json/2017/FPSTD.json", function(data){
+              addGameData(data, "#game-cards-2017");
+            }),
+            $.getJSON("json/2017/FinalBoss.json", function(data){
+              addGameData(data, "#game-cards-2017");
+            }),
+            $.getJSON("json/2016/Minotaur.json", function(data){
+              addGameData(data, "#game-cards-2016");
+            }),
+            $.getJSON("json/2016/Seraph.json", function(data){
+              addGameData(data, "#game-cards-2016");
+            }),
+            $.getJSON("json/2016/Genesis.json", function(data){
+              addGameData(data, "#game-cards-2016");
+            }),
+            $.getJSON("json/2016/Apotheosis.json", function(data){
+              addGameData(data, "#game-cards-2016");
+            }),
+            $.getJSON("json/jams/UEJamMay16.json", function(data){
+              addGameData(data, "#game-cards-jams");
+            }),
+            $.getJSON("json/jams/UEJamOct15.json", function(data){
+              addGameData(data, "#game-cards-jams");
+            }),
+            $.getJSON("json/jams/UEJamSep15.json", function(data){
+              addGameData(data, "#game-cards-jams");
+            })   
           ).then(function(){
 
             $(".port-btn").click(function(){
               
-              if(portContent==this.id)
+              if(portContentId==this.id)
               {
-                $("#port-pan").collapse('hide');
-                portContent = null;
+                $(".port-pan").collapse('hide');
+                portContentId = null;
               }
               else
               {
-                portContent = this.id;
+                if(contentYear != gameCards[this.id].year)
+                {
+                  $(".port-pan").collapse('hide');
+                }
 
-                $("#port-div").html(gameCards[portContent].panel);
-                $("#port-pan").collapse('show');
+                portContentId = this.id;
+                contentYear = gameCards[portContentId].year;
+                let divId = "#port-div-"+contentYear;
+                let panId = "#port-pan-"+contentYear;
+
+                $(divId).html(gameCards[portContentId].panel);
+                $(panId).collapse('show');
                 $(".carousel").carousel();
               }
             });

@@ -1,24 +1,23 @@
 {
-    "name": "Lair of the Minotaur",
-    "tag": "lair",
+    "name": "Seraph2D",
+    "tag": "seraph2d",
+    "year": 2018,
     "images": [
-            "images/MinotaurSplash.png", 
-            "images/MinotaurSplash.png"],
+            "img/Portfolio/QuaSim/Lesson1_0.jpg", 
+            "img/Portfolio/QuaSim/Lesson4_0.PNG"],
     "sections": [
         {
             "name": "Overview",
             "id": "game-overview",
             "className": "tab-pane",
             "active": true,
-            "type": "p",
-            "contents": "<i>Lair of the Minotaur</i> is an educational game-based simulator that provides students with practical experience in the principles of Quantum Cryptography. Funded by grants from the NSF and NSA, <i>QuaSim</i> has resulted in several publications since its conception in 2016."
+            "contents": "<p><i>QuaSim</i> is an educational game-based simulator that offers students an adaptive course in the principles of Quantum Cryptography. </p>"
         },
         {
             "name": "Features",
             "id":"game-features",
             "className":"tab-pane",
             "active":false,
-            "type":"ul",
             "contents": "<ul class=\"list-group list-group-flush\"><li class=\"list-group-item\">4 Lesson Modules</li><li class=\"list-group-item\">Adaptive Challenges and Hints</li><li class=\"list-group-item\">Virtual Assistant/Narrator</li><li class=\"list-group-item\">Cooperative and Competitive Play Modes</li></ul>"
         },
         {
@@ -26,8 +25,7 @@
             "id": "game-responsibilities",
             "className": "tab-pane",
             "active": false,
-            "type":"p",
-            "contents": "As the lead developer for <i>QuaSim</i>, I was responsible for the design and implementation of the game architecture of our lesson system and its integration with Unreal Engine 4. I was also responsible for the implementation of any lesson-specific requirements."
+            "contents": "<p>As the primary developer for <i>QuaSim</i>, I was responsible for the design and implementation of the game architecture of our lesson system and their integration with Unreal Engine 4. I was also responsible for the implementation of any lesson-specific requirements.</p>"
         }
     ]
 }

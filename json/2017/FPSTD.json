@@ -1,0 +1,35 @@
+{
+    "name": "Mazerunner TD",
+    "tag": "fpstd",
+    "year": 2017,
+    "images": [
+            "img/Portfolio/QuaSim/Lesson1_0.jpg", 
+            "img/Portfolio/QuaSim/Lesson4_0.PNG"],
+    "sections": [
+        {
+            "name": "Overview",
+            "id": "game-overview",
+            "className": "tab-pane",
+            "active": true,
+            "type": "p",
+            "contents": "For my capstone project, I worked with two other students to create a suite of procedural terrain and city generation algorithms as a plugin for Unity. Algorithms were evaluated using feedback gathered through Amazon Mechanical Turk."
+        },
+        {
+            "name": "Features",
+            "id":"game-features",
+            "className":"tab-pane",
+            "active":false,
+            "type":"ul",
+            "itemClassName":"list-group-item",
+            "contents": "<ul class=\"list-group list-group-flush\"><li class=\"list-group-item\">4 Lesson Modules</li><li class=\"list-group-item\">Adaptive Challenges and Hints</li><li class=\"list-group-item\">Virtual Assistant/Narrator</li><li class=\"list-group-item\">Cooperative and Competitive Play Modes</li></ul>"
+        },
+        {
+            "name": "Responsibilities",
+            "id": "game-responsibilities",
+            "className": "tab-pane",
+            "active": false,
+            "type": "p",
+            "contents":""
+        }
+    ]
+}

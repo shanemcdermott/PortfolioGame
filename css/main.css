@@ -69,3 +69,17 @@
 .card-title {
     word-wrap: break-word;
 }
+
+div.hr {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 0;
+	border-top: 1px solid #bbb;
+	text-align: center;
+	height: 0px;
+	line-height: 0px;
+}
+  
+.hr-title {
+	background-color: #fff;
+}

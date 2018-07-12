@@ -82,10 +82,11 @@ class PanelSection
 
 class GameInfo
 {
-    constructor(name, tag, images, sections)
+    constructor(name, tag, year, images, sections)
     {
         this.name = name;
         this.tag = tag;
+        this.year = year;
         this.images = images;
         this.sections = sections;
     }

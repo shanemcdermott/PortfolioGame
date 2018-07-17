@@ -1,25 +1,25 @@
 {
-    "name": "Seraph2D",
-    "tag": "seraph2d",
+    "name": "2D Artistic Style Transfer",
+    "tag": "graphics2d",
     "year": 2018,
     "images": [
-            "img/Portfolio/QuaSim/Lesson1_0.jpg", 
-            "img/Portfolio/QuaSim/Lesson4_0.PNG"],
+            "img/Portfolio/Graphics2D/combopreview.png", 
+            "img/Portfolio/Graphics2D/combopreview.png"],
     "sections": [
         {
             "name": "Overview",
             "id": "game-overview",
             "className": "tab-pane",
             "active": true,
-            "contents": "<p><i>Seraph2D</i> is an educational game-based simulator that offers students an adaptive course in the principles of Quantum Cryptography. </p>"
+            "contents": "<p>Over the span of my final spring semester at University of Nebraska-Omaha, I experimented with a variety of 2D tools and algorithms. This was in pursuit of a workflow that could transfer artistic styles between games. Specifically, <i>Golden Sun</i> and <i>Darkest Dungeon</i>.</p>"
             
         },
         {
-            "name": "Features",
+            "name": "Topics Explored",
             "id":"game-features",
             "className":"tab-pane",
             "active":false,
-            "contents": "<ul class=\"list-group list-group-flush\"><li class=\"list-group-item\">Style Adaptation</li>"
+            "contents": "<ul class=\"list-group list-group-flush\"><li class=\"list-group-item\">Style Adaptation using Google Magenta</li><li class=\"list-group-item\">Post-Processing in Unity</li><li class=\"list-group-item\">Tilemaps in Unity</li></ul>"
         },
         {
             "name": "Responsibilities",

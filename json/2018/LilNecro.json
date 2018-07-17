@@ -11,21 +11,14 @@
             "id": "game-overview",
             "className": "tab-pane",
             "active": true,
-            "contents": "<p><i>Lil Necro</i> is a strategic card game that was created for Global Game Jam 18. </p>"
-        },
-        {
-            "name": "Features",
-            "id":"game-features",
-            "className":"tab-pane",
-            "active":false,
-            "contents": "<ul class=\"list-group list-group-flush\"><li class=\"list-group-item\">4 Lesson Modules</li><li class=\"list-group-item\">Adaptive Challenges and Hints</li><li class=\"list-group-item\">Virtual Assistant/Narrator</li><li class=\"list-group-item\">Cooperative and Competitive Play Modes</li></ul>"
+            "contents": "<p>Join a young necromancer who seeks the destruction of a kingdom. Instruct her minions using command cards enscribed with disease and emotion vectors.</p> <p>Created over the span of a weekend, <i>Lil Necro</i> is a strategic card game that was created using Unity for Global Game Jam 18.</p> <p>You can download it <a href=\"https://globalgamejam.org/2018/games/lilnecro\" target=\"_blank\">here</a>. The source code is avalable <a href=\"https://github.com/Leticro/GlobalGameJam2018.git\" target=\"_blank\">on GitHub</a>.</p>"
         },
         {
             "name": "Responsibilities",
             "id": "game-responsibilities",
             "className": "tab-pane",
             "active": false,
-            "contents": "<p>As the primary developer for <i>QuaSim</i>, I was responsible for the design and implementation of the game architecture of our lesson system and their integration with Unreal Engine 4. I was also responsible for the implementation of any lesson-specific requirements.</p>"
+            "contents": "<p>This was a very ambitious project with an incredibly creative content designer. As one of two programmers in the group, I primarily focused on our game's architecture.</p> <p>Unfortunately, Mark, our lead designer, wasn't familiar with Unity. To address this, I created a small framework to import his designs from a JSON format. This was used to assign each level's dialogue options, victory conditions, and transition links. This allowed us to both realize (most of) Mark's designs within a 48 hour window as well as opened the game up to user modifications.</p>"
         }
     ]
 }

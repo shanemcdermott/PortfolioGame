@@ -17,11 +17,15 @@
         {
             "name": "Features",
             "id":"game-features",
-            "className":"tab-pane",
+            "className":"list-group list-group-flush",
             "active":false,
             "type":"ul",
             "itemClassName":"list-group-item",
-            "contents": "<ul class=\"list-group list-group-flush\"><li class=\"list-group-item\">4 Lesson Modules</li><li class=\"list-group-item\">Adaptive Challenges and Hints</li><li class=\"list-group-item\">Virtual Assistant/Narrator</li><li class=\"list-group-item\">Cooperative and Competitive Play Modes</li></ul>"
+            "contents": [
+                "Procedural Cities",
+                "Procedural Road Networks"
+            ]
+                
         },
         {
             "name": "Responsibilities",

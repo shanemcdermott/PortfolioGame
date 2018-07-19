@@ -3,29 +3,36 @@
     "tag": "seraph",
     "year": 2016,
     "images": [
-            "img/Portfolio/QuaSim/Lesson1_0.jpg", 
-            "img/Portfolio/QuaSim/Lesson4_0.PNG"],
+            "img/Portfolio/Seraph/IntroScreen.PNG", 
+            "img/Portfolio/Seraph/Daytime.PNG",
+            "img/Portfolio/Seraph/NightTime.PNG",
+            "img/Portfolio/Seraph/StatsPanel.PNG",
+            "img/Portfolio/Seraph/Hunger.PNG"
+    ],
     "sections": [
         {
             "name": "Overview",
             "id": "game-overview",
             "className": "tab-pane",
             "active": true,
-            "contents": "<p><i>QuaSim</i> is an educational game-based simulator that offers students an adaptive course in the principles of Quantum Cryptography. </p>"
+            "type": "p",
+            "contents": [
+                "Initially conceived as a 2-D counterpart to my 3-D side project, <i>Seraph</i> is a procedurally generated survival game."
+            ]
         },
         {
             "name": "Features",
-            "id":"game-features",
-            "className":"tab-pane",
-            "active":false,
-            "contents": "<ul class=\"list-group list-group-flush\"><li class=\"list-group-item\">4 Lesson Modules</li><li class=\"list-group-item\">Adaptive Challenges and Hints</li><li class=\"list-group-item\">Virtual Assistant/Narrator</li><li class=\"list-group-item\">Cooperative and Competitive Play Modes</li></ul>"
-        },
-        {
-            "name": "Responsibilities",
-            "id": "game-responsibilities",
-            "className": "tab-pane",
+            "id": "game-features",
             "active": false,
-            "contents": "<p>As the primary developer for <i>QuaSim</i>, I was responsible for the design and implementation of the game architecture of our lesson system and their integration with Unreal Engine 4. I was also responsible for the implementation of any lesson-specific requirements.</p>"
+            "type": "ul",
+            "className": "list-group list-group-flush",
+            "contents": [
+                "Distance-based world generation",
+                "Name-based save files",
+                "Day/Night Cycles",
+                "Hunger/Thirst System",
+                "Dynamic Enemy Spawns"
+            ]
         }
     ]
 }

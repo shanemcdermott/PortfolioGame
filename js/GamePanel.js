@@ -1,10 +1,11 @@
 class GameCard
 {
-    constructor(name, tag, imageSrc)
+    constructor(name, tag, imageSrc, color="primary")
     {
         this.name = name;
         this.tag = tag;
         this.imageSrc = imageSrc;
+        this.color = color;
     }
 
     get html()
@@ -18,7 +19,7 @@ class GameCard
     get cardButton()
     {
         var div = document.createElement("div");
-        div.className = "card bg-smooth btn btn-primary port-btn";
+        div.className = "card bg-smooth btn btn-primary port-btn bg-" + this.color;
         div.setAttribute("role","button");
         div.id=this.tag+"-btn";
         return div;
@@ -75,25 +76,47 @@ class PanelSection
         let pane = document.createElement("div");
             pane.id=this.id;
             pane.className= this.active? "tab-pane"+ " active" : "tab-pane";
-            pane.innerHTML=this.contents;
+            if(this.type=="ul")
+            {
+                pane.appendChild(this.generateList());
+            }
+            else
+            {
+                pane.innerHTML=this.contents;
+            }
         return pane;
+    }
+
+    generateList()
+    {
+        let listContents = document.createElement("ul");
+        listContents.className = this.className;
+        this.contents.forEach(function(value){
+            let listItem = document.createElement("li");
+                listItem.className="list-group-item";
+                listItem.innerText=value;
+            listContents.appendChild(listItem);
+        });
+
+        return listContents;
     }
 }
 
 class GameInfo
 {
-    constructor(name, tag, year, images, sections)
+    constructor(name, tag, year, images, sections, color="primary")
     {
         this.name = name;
         this.tag = tag;
         this.year = year;
         this.images = images;
         this.sections = sections;
+        this.color = color;
     }
 
     get card()
     {
-        return new GameCard(this.name,this.tag,this.images[0]);
+        return new GameCard(this.name,this.tag,this.images[0], this.color);
     }
 
     get panel()

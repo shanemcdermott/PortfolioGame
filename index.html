@@ -146,7 +146,7 @@
               sections[i] = new PanelSection(section.name, section.id, section.className, section.active, section.type, section.contents);
             });
 
-            let gameBtn = new GameInfo(data.name, data.tag, data.year, data.images, sections);
+            let gameBtn = new GameInfo(data.name, data.tag, data.year, data.images, sections, data.color);
             let cardHtml = gameBtn.card.html;
             
             gameCards[data.tag+"-btn"] = gameBtn;

@@ -1,6 +1,7 @@
 {
     "name": "QuaSim",
     "tag": "qua",
+    "color": "success",
     "year": 2018,
     "images": [
             "img/Portfolio/QuaSim/Lesson1_0.jpg", 

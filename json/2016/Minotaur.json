@@ -4,8 +4,14 @@
     "year": 2016,
     "color": "primary",
     "images": [
-            "images/MinotaurSplash.png", 
-            "images/MinotaurSplash.png"],
+            "img/Portfolio/Minotaur/MinotaurSplash.png", 
+            "img/Portfolio/Minotaur/ss_0.png",
+            "img/Portfolio/Minotaur/ss_1.png",
+            "img/Portfolio/Minotaur/ss_2.png",
+            "img/Portfolio/Minotaur/ss_3.png",
+            "img/Portfolio/Minotaur/ss_4.png",
+            "img/Portfolio/Minotaur/ss_5.png"
+        ],
     "sections": [
         {
             "name": "Overview",
@@ -13,27 +19,37 @@
             "className": "tab-pane",
             "active": true,
             "type": "p",
-            "contents": "<i>Lair of the Minotaur</i> is a procedurally generated maze game."
-        },
-        {
-            "name": "Features",
-            "id":"game-features",
-            "className":"list-group-flush",
-            "active":false,
-            "type":"ul",
             "contents": [
-                "Procedurally Generated Mazes",
-                "Multiple Enemy Types",
-                "Location-based audio"
+                "<i>Lair of the Minotaur</i> is a maze-solving game with a tinge of horror. I was responsible for scripting and assembly of the project, while Cathryn Grange directed the art. Alec Summers directed our design choices.",
+                "The player is cast as a young girl who must navigate a series of mazes using only her lantern and her wits to survive the horrors within. The player must avoid spiders, bats, and, of course, a Minotaur.",
+                "You can read more about it <a href=\"https://www.shanemcdermott.ninja/Portfolio/2016/DigitalDesign/Project4/\">here</a>."
             ]
         },
         {
-            "name": "Responsibilities",
-            "id": "game-responsibilities",
-            "className": "tab-pane",
+            "name": "Player Mechanics",
+            "id": "player-mechanics",
+            "type": "ul",
+            "className": "list-group list-group-flush",
             "active": false,
-            "type":"p",
-            "contents": "As the lead developer for <i>QuaSim</i>, I was responsible for the design and implementation of the game architecture of our lesson system and its integration with Unreal Engine 4. I was also responsible for the implementation of any lesson-specific requirements."
+            "contents": [
+                "In order to imbue the player with a feeling of despair, there is no means of directly combating the enemies that populate the dungeon.",
+                "Player health is represented via the radius of light emitted from their lantern.",
+                "The color of light emitted impacts enemy visibility and also acts as extra player lives.",
+                "To emulate a \"breadcrumb trail\" system, the player can light torches that have been distributed throughout the maze. To help encourage this action, Torch lighting also restores player health."
+            ]
+        },
+        {
+            "name": "Environmental Mechanics",
+            "id": "env-mechanics",
+            "type": "ul",
+            "className": "list-group list-group-flush",
+            "active": false,
+            "contents": [
+                "We opted to randomly generate mazes in order to provide players with a different experience each time.",
+                "The maze is composed of three branch types- the critical path, spider nests, and bat caverns.",
+                "Initially, each enemy spawn was confined to its branch type. However, after initial playtesting, bats were distributed throughout the dungeon in order to make the critical path more exciting.",
+                "Each branch type ends in a room that houses its key monster type."
+            ]
         }
     ]
 }

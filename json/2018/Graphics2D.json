@@ -20,13 +20,6 @@
             "className":"tab-pane",
             "active":false,
             "contents": "<ul class=\"list-group list-group-flush\"><li class=\"list-group-item\">Style Adaptation using Google Magenta</li><li class=\"list-group-item\">Post-Processing in Unity</li><li class=\"list-group-item\">Tilemaps in Unity</li></ul>"
-        },
-        {
-            "name": "Responsibilities",
-            "id": "game-responsibilities",
-            "className": "tab-pane",
-            "active": false,
-            "contents": "<p>As the primary developer for <i>QuaSim</i>, I was responsible for the design and implementation of the game architecture of our lesson system and their integration with Unreal Engine 4. I was also responsible for the implementation of any lesson-specific requirements.</p>"
         }
     ]
 }

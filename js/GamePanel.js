@@ -80,6 +80,10 @@ class PanelSection
             {
                 pane.appendChild(this.generateList());
             }
+            else if(this.type=="p")
+            {
+                pane.appendChild(this.generateParagraphs());
+            }
             else
             {
                 pane.innerHTML=this.contents;
@@ -95,6 +99,19 @@ class PanelSection
             let listItem = document.createElement("li");
                 listItem.className="list-group-item";
                 listItem.innerText=value;
+            listContents.appendChild(listItem);
+        });
+
+        return listContents;
+    }
+
+    generateParagraphs()
+    {
+        let listContents = document.createElement("div");
+            listContents.className = this.className;
+        this.contents.forEach(function(value){
+            let listItem = document.createElement("p");
+                listItem.innerHTML=value;
             listContents.appendChild(listItem);
         });
 

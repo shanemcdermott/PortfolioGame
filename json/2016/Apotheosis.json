@@ -3,29 +3,44 @@
     "tag": "apotheosis",
     "year": 2016,
     "images": [
-            "img/Portfolio/QuaSim/Lesson1_0.jpg", 
-            "img/Portfolio/QuaSim/Lesson4_0.PNG"],
+            "img/Portfolio/Apotheosis/ss_3.png",
+            "img/Portfolio/Apotheosis/ss_0.png",
+            "img/Portfolio/Apotheosis/ss_1.png",
+            "img/Portfolio/Apotheosis/ss_2.png",
+            "img/Portfolio/Apotheosis/ss_4.png",
+            "img/Portfolio/Apotheosis/ss_5.png",
+            "img/Portfolio/Apotheosis/ss_6.png",
+            "img/Portfolio/Apotheosis/ss_7.png",
+            "img/Portfolio/Apotheosis/ss_8.png",
+            "img/Portfolio/Apotheosis/ss_9.png"
+        ],
     "sections": [
-        {
-            "name": "Overview",
-            "id": "game-overview",
-            "className": "tab-pane",
-            "active": true,
-            "contents": "<p><i>QuaSim</i> is an educational game-based simulator that offers students an adaptive course in the principles of Quantum Cryptography. </p>"
-        },
-        {
-            "name": "Features",
-            "id":"game-features",
-            "className":"tab-pane",
-            "active":false,
-            "contents": "<ul class=\"list-group list-group-flush\"><li class=\"list-group-item\">4 Lesson Modules</li><li class=\"list-group-item\">Adaptive Challenges and Hints</li><li class=\"list-group-item\">Virtual Assistant/Narrator</li><li class=\"list-group-item\">Cooperative and Competitive Play Modes</li></ul>"
-        },
-        {
-            "name": "Responsibilities",
-            "id": "game-responsibilities",
-            "className": "tab-pane",
-            "active": false,
-            "contents": "<p>As the primary developer for <i>QuaSim</i>, I was responsible for the design and implementation of the game architecture of our lesson system and their integration with Unreal Engine 4. I was also responsible for the implementation of any lesson-specific requirements.</p>"
-        }
+      {
+          "name": "Overview",
+          "id": "apotheosis-overview",
+          "type": "p",
+          "className": " ",
+          "active": true,
+          "contents": [
+            "<i>Apotheosis</i> is an action-adventure game that experiments with character identity and reputation. After waking up alone in a forest with neither memories nor clothing, guide your character through social and environmental challenges alike.",
+            "As my third and final solo project using Game Maker Studio, <i>Apotheosis</i> showcases a variety of techniques and technologies that were learned throughout the semester."
+          ]
+      },
+      {
+          "name": "Features",
+          "id": "apotheosis-features",
+          "type": "ul",
+          "className": "list-group list-group-flush",
+          "active": false,
+          "contents": [
+              "Tutorials and Quests",
+              "Character Aliases and Reputations",
+              "Limb Targeting",
+              "Loot progression system",
+              "Branching dialogue system",
+              "Dynamic enemy spawns",
+              "Grid-based navigation"
+          ]
+      }
     ]
 }

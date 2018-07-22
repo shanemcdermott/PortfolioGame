@@ -12,7 +12,7 @@
             "className": "tab-pane",
             "active": true,
             "type": "p",
-            "contents": "For my capstone project, I worked with two other students to create a suite of procedural terrain and city generation algorithms as a plugin for Unity. Algorithms were evaluated using feedback gathered through Amazon Mechanical Turk."
+            "contents": "For my Capstone project, I worked with two other students to create a plugin for Unity that assists the recording of a side-by-side comparision of two or more competing features within a user-controlled environment.</p><p>To test the viability of this process, we submitted two rounds of survey requests through Amazon Mechanical Turk.</p><p>The project's source code is available <a href=\"https://github.com/shanemcdermott/UnityMechanicalTurk\">here</a>."
         },
         {
             "name": "Features",
